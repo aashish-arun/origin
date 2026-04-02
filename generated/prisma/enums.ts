@@ -9,7 +9,22 @@
 * 🟢 You can import this file directly.
 */
 
+export const CollectionCategory = {
+  ANIME: 'ANIME',
+  GAMES: 'GAMES',
+  MANGA: 'MANGA',
+  BOOKS: 'BOOKS',
+  HOTWHEELS: 'HOTWHEELS',
+  OTHER: 'OTHER'
+} as const
+
+export type CollectionCategory = (typeof CollectionCategory)[keyof typeof CollectionCategory]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const ItemStatus = {
+  OWNED: 'OWNED',
+  WISHLIST: 'WISHLIST',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ItemStatus = (typeof ItemStatus)[keyof typeof ItemStatus]

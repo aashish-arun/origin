@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.6.0",
   "engineVersion": "75cbdc1eb7150937890ad5465d861175c6624711",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum CollectionCategory {\n  ANIME\n  GAMES\n  MANGA\n  BOOKS\n  HOTWHEELS\n  OTHER\n}\n\nenum ItemStatus {\n  OWNED\n  WISHLIST\n  ARCHIVED\n}\n\nmodel CollectionItem {\n  id          String             @id @default(cuid())\n  title       String\n  slug        String             @unique\n  description String?\n  category    CollectionCategory\n  status      ItemStatus         @default(OWNED)\n  imageUrl    String?\n  isPublic    Boolean            @default(true)\n  isFeatured  Boolean            @default(false)\n  tags        String[]\n  createdAt   DateTime           @default(now())\n  updatedAt   DateTime           @updatedAt\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"CollectionItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"enum\",\"type\":\"CollectionCategory\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ItemStatus\"},{\"name\":\"imageUrl\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isPublic\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"isFeatured\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"CollectionItem.findUnique\",\"CollectionItem.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"CollectionItem.findFirst\",\"CollectionItem.findFirstOrThrow\",\"CollectionItem.findMany\",\"data\",\"CollectionItem.createOne\",\"CollectionItem.createMany\",\"CollectionItem.createManyAndReturn\",\"CollectionItem.updateOne\",\"CollectionItem.updateMany\",\"CollectionItem.updateManyAndReturn\",\"create\",\"update\",\"CollectionItem.upsertOne\",\"CollectionItem.deleteOne\",\"CollectionItem.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"CollectionItem.groupBy\",\"CollectionItem.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"title\",\"slug\",\"description\",\"CollectionCategory\",\"category\",\"ItemStatus\",\"status\",\"imageUrl\",\"isPublic\",\"isFeatured\",\"tags\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"has\",\"hasEvery\",\"hasSome\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"push\"]"),
+  graph: "QgkQDxoAADAAMBsAAAQAEBwAADAAMB0BAAAAAR4BADEAIR8BAAAAASABADIAISIAADMiIiQAADQkIiUBADIAISYgADUAIScgADUAISgAACAAIClAADYAISpAADYAIQEAAAABACABAAAAAQAgDxoAADAAMBsAAAQAEBwAADAAMB0BADEAIR4BADEAIR8BADEAISABADIAISIAADMiIiQAADQkIiUBADIAISYgADUAIScgADUAISgAACAAIClAADYAISpAADYAIQIgAAA3ACAlAAA3ACADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAMHQEAAAABHgEAAAABHwEAAAABIAEAAAABIgAAACICJAAAACQCJQEAAAABJiAAAAABJyAAAAABKAAAQgAgKUAAAAABKkAAAAABAQgAAAkAIAwdAQAAAAEeAQAAAAEfAQAAAAEgAQAAAAEiAAAAIgIkAAAAJAIlAQAAAAEmIAAAAAEnIAAAAAEoAABCACApQAAAAAEqQAAAAAEBCAAACwAwAQgAAAsAMAwdAQA7ACEeAQA7ACEfAQA7ACEgAQA8ACEiAAA9IiIkAAA-JCIlAQA8ACEmIAA_ACEnIAA_ACEoAABAACApQABBACEqQABBACECAAAAAQAgCAAADgAgDB0BADsAIR4BADsAIR8BADsAISABADwAISIAAD0iIiQAAD4kIiUBADwAISYgAD8AIScgAD8AISgAAEAAIClAAEEAISpAAEEAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAADgAIBYAADoAIBcAADkAICAAADcAICUAADcAIA8aAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAbACEgAQAcACEiAAAdIiIkAAAeJCIlAQAcACEmIAAfACEnIAAfACEoAAAgACApQAAhACEqQAAhACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIA8aAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfAQAbACEgAQAcACEiAAAdIiIkAAAeJCIlAQAcACEmIAAfACEnIAAfACEoAAAgACApQAAhACEqQAAhACEOFQAAIwAgFgAALwAgFwAALwAgKwEAAAABLAEAAAAELQEAAAAELgEAAAABLwEAAAABMAEAAAABMQEAAAABMgEALgAhNgEAAAABNwEAAAABOAEAAAABDhUAACwAIBYAAC0AIBcAAC0AICsBAAAAASwBAAAABS0BAAAABS4BAAAAAS8BAAAAATABAAAAATEBAAAAATIBACsAITYBAAAAATcBAAAAATgBAAAAAQcVAAAjACAWAAAqACAXAAAqACArAAAAIgIsAAAAIggtAAAAIggyAAApIiIHFQAAIwAgFgAAKAAgFwAAKAAgKwAAACQCLAAAACQILQAAACQIMgAAJyQiBRUAACMAIBYAACYAIBcAACYAICsgAAAAATIgACUAIQQrAQAAAAUzAQAAAAE0AQAAAAQ1AQAAAAQLFQAAIwAgFgAAJAAgFwAAJAAgK0AAAAABLEAAAAAELUAAAAAELkAAAAABL0AAAAABMEAAAAABMUAAAAABMkAAIgAhCxUAACMAIBYAACQAIBcAACQAICtAAAAAASxAAAAABC1AAAAABC5AAAAAAS9AAAAAATBAAAAAATFAAAAAATJAACIAIQgrAgAAAAEsAgAAAAQtAgAAAAQuAgAAAAEvAgAAAAEwAgAAAAExAgAAAAEyAgAjACEIK0AAAAABLEAAAAAELUAAAAAELkAAAAABL0AAAAABMEAAAAABMUAAAAABMkAAJAAhBRUAACMAIBYAACYAIBcAACYAICsgAAAAATIgACUAIQIrIAAAAAEyIAAmACEHFQAAIwAgFgAAKAAgFwAAKAAgKwAAACQCLAAAACQILQAAACQIMgAAJyQiBCsAAAAkAiwAAAAkCC0AAAAkCDIAACgkIgcVAAAjACAWAAAqACAXAAAqACArAAAAIgIsAAAAIggtAAAAIggyAAApIiIEKwAAACICLAAAACIILQAAACIIMgAAKiIiDhUAACwAIBYAAC0AIBcAAC0AICsBAAAAASwBAAAABS0BAAAABS4BAAAAAS8BAAAAATABAAAAATEBAAAAATIBACsAITYBAAAAATcBAAAAATgBAAAAAQgrAgAAAAEsAgAAAAUtAgAAAAUuAgAAAAEvAgAAAAEwAgAAAAExAgAAAAEyAgAsACELKwEAAAABLAEAAAAFLQEAAAAFLgEAAAABLwEAAAABMAEAAAABMQEAAAABMgEALQAhNgEAAAABNwEAAAABOAEAAAABDhUAACMAIBYAAC8AIBcAAC8AICsBAAAAASwBAAAABC0BAAAABC4BAAAAAS8BAAAAATABAAAAATEBAAAAATIBAC4AITYBAAAAATcBAAAAATgBAAAAAQsrAQAAAAEsAQAAAAQtAQAAAAQuAQAAAAEvAQAAAAEwAQAAAAExAQAAAAEyAQAvACE2AQAAAAE3AQAAAAE4AQAAAAEPGgAAMAAwGwAABAAQHAAAMAAwHQEAMQAhHgEAMQAhHwEAMQAhIAEAMgAhIgAAMyIiJAAANCQiJQEAMgAhJiAANQAhJyAANQAhKAAAIAAgKUAANgAhKkAANgAhCysBAAAAASwBAAAABC0BAAAABC4BAAAAAS8BAAAAATABAAAAATEBAAAAATIBAC8AITYBAAAAATcBAAAAATgBAAAAAQsrAQAAAAEsAQAAAAUtAQAAAAUuAQAAAAEvAQAAAAEwAQAAAAExAQAAAAEyAQAtACE2AQAAAAE3AQAAAAE4AQAAAAEEKwAAACICLAAAACIILQAAACIIMgAAKiIiBCsAAAAkAiwAAAAkCC0AAAAkCDIAACgkIgIrIAAAAAEyIAAmACEIK0AAAAABLEAAAAAELUAAAAAELkAAAAABL0AAAAABMEAAAAABMUAAAAABMkAAJAAhAAAAAAE5AQAAAAEBOQEAAAABATkAAAAiAgE5AAAAJAIBOSAAAAABAjkBAAAABDoBAAAABQE5QAAAAAEBOQEAAAAEAAAAAAMVAAYWAAcXAAgAAAADFQAGFgAHFwAIAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGBgFGRkJ"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more CollectionItems
+   * const collectionItems = await prisma.collectionItem.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more CollectionItems
+ * const collectionItems = await prisma.collectionItem.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -188,7 +188,15 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.collectionItem`: Exposes CRUD operations for the **CollectionItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CollectionItems
+    * const collectionItems = await prisma.collectionItem.findMany()
+    * ```
+    */
+  get collectionItem(): Prisma.CollectionItemDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
