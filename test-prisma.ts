@@ -1,16 +1,21 @@
 import "dotenv/config";
-import { prisma } from "@/app/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 async function main() {
-  const items = await prisma.collectionItem.findMany();
+  const items = await prisma.collectible.findMany();
 
   const dbTime = await prisma.$queryRaw`SELECT NOW()`;
 
   console.log("✅ Prisma connected!");
   console.log("🕒 DB Time:", dbTime);
-  console.log("📦 Items:", items);
+  console.log("📦 Collectibles:", items);
 }
 
 main()
-  .catch(console.error)
-  .finally(() => prisma.$disconnect());
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
