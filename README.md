@@ -97,3 +97,7 @@ Ongoing improvements include:
 
 **Aashish Arun**  
 GitHub: https://github.com/aashish-arun
+
+## License
+
+This project is licensed under the MIT License.
