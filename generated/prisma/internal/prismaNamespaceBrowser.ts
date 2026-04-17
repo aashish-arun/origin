@@ -51,7 +51,18 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  CollectionItem: 'CollectionItem'
+  HealthCheck: 'HealthCheck',
+  Admin: 'Admin',
+  Category: 'Category',
+  Subtype: 'Subtype',
+  Franchise: 'Franchise',
+  Series: 'Series',
+  Brand: 'Brand',
+  Collectible: 'Collectible',
+  Edition: 'Edition',
+  Purchase: 'Purchase',
+  Lot: 'Lot',
+  Media: 'Media'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,22 +81,159 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const CollectionItemScalarFieldEnum = {
+export const HealthCheckScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  slug: 'slug',
-  description: 'description',
-  category: 'category',
-  status: 'status',
-  imageUrl: 'imageUrl',
-  isPublic: 'isPublic',
-  isFeatured: 'isFeatured',
-  tags: 'tags',
+  message: 'message',
+  createdAt: 'createdAt'
+} as const
+
+export type HealthCheckScalarFieldEnum = (typeof HealthCheckScalarFieldEnum)[keyof typeof HealthCheckScalarFieldEnum]
+
+
+export const AdminScalarFieldEnum = {
+  userId: 'userId',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  icon: 'icon',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type CollectionItemScalarFieldEnum = (typeof CollectionItemScalarFieldEnum)[keyof typeof CollectionItemScalarFieldEnum]
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const SubtypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubtypeScalarFieldEnum = (typeof SubtypeScalarFieldEnum)[keyof typeof SubtypeScalarFieldEnum]
+
+
+export const FranchiseScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FranchiseScalarFieldEnum = (typeof FranchiseScalarFieldEnum)[keyof typeof FranchiseScalarFieldEnum]
+
+
+export const SeriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  format: 'format',
+  totalUnits: 'totalUnits',
+  notes: 'notes',
+  franchiseId: 'franchiseId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof SeriesScalarFieldEnum]
+
+
+export const BrandScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
+
+
+export const CollectibleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  brandId: 'brandId',
+  categoryId: 'categoryId',
+  subtypeId: 'subtypeId',
+  franchiseId: 'franchiseId',
+  seriesId: 'seriesId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CollectibleScalarFieldEnum = (typeof CollectibleScalarFieldEnum)[keyof typeof CollectibleScalarFieldEnum]
+
+
+export const EditionScalarFieldEnum = {
+  id: 'id',
+  collectibleId: 'collectibleId',
+  seriesId: 'seriesId',
+  editionNumber: 'editionNumber',
+  editionName: 'editionName',
+  exclusiveLabel: 'exclusiveLabel',
+  releaseDate: 'releaseDate',
+  editionSize: 'editionSize',
+  sku: 'sku',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EditionScalarFieldEnum = (typeof EditionScalarFieldEnum)[keyof typeof EditionScalarFieldEnum]
+
+
+export const PurchaseScalarFieldEnum = {
+  id: 'id',
+  collectibleId: 'collectibleId',
+  editionId: 'editionId',
+  condition: 'condition',
+  status: 'status',
+  purchasedAt: 'purchasedAt',
+  storeName: 'storeName',
+  receiptUrl: 'receiptUrl',
+  purchasePrice: 'purchasePrice',
+  taxAmount: 'taxAmount',
+  shippingCost: 'shippingCost',
+  totalCost: 'totalCost',
+  resaleDate: 'resaleDate',
+  resalePrice: 'resalePrice',
+  lotId: 'lotId',
+  serialNumber: 'serialNumber',
+  location: 'location',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseScalarFieldEnum = (typeof PurchaseScalarFieldEnum)[keyof typeof PurchaseScalarFieldEnum]
+
+
+export const LotScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LotScalarFieldEnum = (typeof LotScalarFieldEnum)[keyof typeof LotScalarFieldEnum]
+
+
+export const MediaScalarFieldEnum = {
+  id: 'id',
+  collectibleId: 'collectibleId',
+  editionId: 'editionId',
+  url: 'url',
+  createdAt: 'createdAt'
+} as const
+
+export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
 
 
 export const SortOrder = {

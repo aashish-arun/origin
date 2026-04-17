@@ -1,38 +1,277 @@
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model CollectionItem {
-  id          String             @id @default(cuid())
-  title       String
-  slug        String             @unique
-  description String?
-  category    CollectionCategory
-  status      ItemStatus         @default(OWNED)
-  imageUrl    String?
-  isPublic    Boolean            @default(true)
-  isFeatured  Boolean            @default(false)
-  tags        String[]
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+////////////////////////////////////////////
+// 🔐 AUTH / SYSTEM MODELS
+////////////////////////////////////////////
+
+model HealthCheck {
+  id        String   @id @default(uuid()) @db.Uuid // unique health check id
+  message   String?                                // optional message
+  createdAt DateTime @default(now()) @map("created_at") // timestamp
+  @@map("health_check")
 }
 
-enum CollectionCategory {
-  ANIME
-  GAMES
+model Admin {
+  userId    String   @id @db.Uuid @map("user_id") // admin user id
+  isActive  Boolean  @default(true) @map("is_active") // active flag
+  createdAt DateTime @default(now()) @map("created_at")
+  @@map("admin")
+}
+
+////////////////////////////////////////////
+// 🗂️ CATEGORY / SUBTYPE
+////////////////////////////////////////////
+
+model Category {
+  id           Int          @id @default(autoincrement()) // category id
+  name         String       @unique                      // e.g. Figures
+  icon         String?                                  // optional icon
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  subtypes     Subtype[]                               // child subtypes
+  collectibles Collectible[]                           // items in category
+
+  @@map("category")
+}
+
+model Subtype {
+  id           Int        @id @default(autoincrement()) // subtype id
+  name         String                                    // e.g. Prize Figure
+  categoryId   Int        @map("category_id")            // FK → Category
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  category     Category   @relation(fields: [categoryId], references: [id])
+  collectibles Collectible[]
+
+  @@unique([name, categoryId])                          // no duplicate subtype per category
+  @@index([categoryId])
+  @@map("subtype")
+}
+
+////////////////////////////////////////////
+// 🎬 FRANCHISE / SERIES
+////////////////////////////////////////////
+
+model Franchise {
+  id           Int          @id @default(autoincrement()) // franchise id
+  name         String       @unique                      // e.g. One Piece
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  series       Series[]                                 // related series
+  collectibles Collectible[]                           // direct items
+
+  @@map("franchise")
+}
+
+model Series {
+  id           Int          @id @default(autoincrement()) // series id
+  name         String                                    // e.g. GLITTER & GLAMOURS
+  format       SeriesFormat                              // enum type
+  totalUnits   Int?       @map("total_units")             // optional count
+  notes        String?                                   // optional notes
+  franchiseId  Int        @map("franchise_id")            // FK → Franchise
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  franchise    Franchise   @relation(fields: [franchiseId], references: [id])
+  collectibles Collectible[]
+  editions     Edition[]
+
+  @@unique([name, franchiseId])                          // unique per franchise
+  @@index([franchiseId])
+  @@map("series")
+}
+
+////////////////////////////////////////////
+// 🏭 BRAND (MANUFACTURER)
+////////////////////////////////////////////
+
+model Brand {
+  id           Int          @id @default(autoincrement()) // brand id
+  name         String       @unique                      // e.g. Banpresto
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  collectibles Collectible[]                            // items made by brand
+
+  @@map("brand")
+}
+
+////////////////////////////////////////////
+// 🎯 COLLECTIBLE (BASE ITEM)
+////////////////////////////////////////////
+
+model Collectible {
+  id           Int        @id @default(autoincrement()) // main item id
+  title        String                                   // e.g. Nami Figure
+  description  String?                                  // optional details
+  imageUrl     String?    @map("image_url")              // primary image
+
+  brandId      Int?       @map("brand_id")               // FK → Brand
+  categoryId   Int        @map("category_id")            // FK → Category
+  subtypeId    Int        @map("subtype_id")             // FK → Subtype
+  franchiseId  Int?       @map("franchise_id")           // FK → Franchise
+  seriesId     Int?       @map("series_id")              // FK → Series
+
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  brand        Brand?     @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  category     Category   @relation(fields: [categoryId], references: [id])
+  subtype      Subtype    @relation(fields: [subtypeId], references: [id])
+  franchise    Franchise? @relation(fields: [franchiseId], references: [id], onDelete: SetNull)
+  series       Series?    @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+
+  editions     Edition[]                               // variants
+  purchases    Purchase[]                              // owned items
+  media        Media[]                                 // images
+
+  @@index([categoryId])
+  @@index([seriesId])
+  @@index([brandId])
+  @@map("collectible")
+}
+
+////////////////////////////////////////////
+// 🎨 EDITION (VARIANTS)
+////////////////////////////////////////////
+
+model Edition {
+  id            Int        @id @default(autoincrement()) // edition id
+  collectibleId Int        @map("collectible_id")        // FK → Collectible
+  seriesId      Int?       @map("series_id")             // optional FK → Series
+
+  editionNumber Int?       @map("edition_number")        // version number
+  editionName   String?    @map("edition_name")          // e.g. Version A
+  exclusiveLabel String?   @map("exclusive_label")       // e.g. Limited
+
+  releaseDate   DateTime?  @map("release_date")          // release date
+  editionSize   Int?       @map("edition_size")          // production count
+  sku           String?                                 // product code
+
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  collectible   Collectible @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
+  series        Series?     @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  purchases     Purchase[]
+  media         Media[]
+
+  @@index([collectibleId])
+  @@index([seriesId])
+  @@map("edition")
+}
+
+////////////////////////////////////////////
+// 🧾 PURCHASE (REAL OWNED ITEM)
+////////////////////////////////////////////
+
+model Purchase {
+  id             Int        @id @default(autoincrement()) // purchase id
+  collectibleId  Int        @map("collectible_id")        // FK → Collectible
+  editionId      Int?       @map("edition_id")            // FK → Edition
+
+  condition      Condition                              // item condition
+  status         PurchaseStatus                         // owned/sold/gifted
+  purchasedAt    DateTime   @map("purchased_at")         // purchase date
+
+  storeName      String?    @map("store_name")           // where bought
+  receiptUrl     String?    @map("receipt_url")          // proof
+
+  purchasePrice  Decimal?   @map("purchase_price") @db.Decimal(10,2)
+  taxAmount      Decimal?   @map("tax_amount") @db.Decimal(10,2)
+  shippingCost   Decimal?   @map("shipping_cost") @db.Decimal(10,2)
+  totalCost      Decimal?   @map("total_cost") @db.Decimal(10,2)
+
+  resaleDate     DateTime?  @map("resale_date")          // sold date
+  resalePrice    Decimal?   @map("resale_price") @db.Decimal(10,2)
+
+  lotId          Int?       @map("lot_id")               // FK → Lot
+  serialNumber   String?    @map("serial_number")        // unique item id
+  location       String?                                // storage location
+
+  notes          String?                                // extra info
+
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
+
+  collectible    Collectible @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
+  edition        Edition?    @relation(fields: [editionId], references: [id], onDelete: SetNull)
+  lot            Lot?        @relation(fields: [lotId], references: [id], onDelete: SetNull)
+
+  @@index([collectibleId])
+  @@index([status])
+  @@index([purchasedAt])
+  @@map("purchase")
+}
+
+////////////////////////////////////////////
+// 📦 LOT (GROUP PURCHASE)
+////////////////////////////////////////////
+
+model Lot {
+  id           Int        @id @default(autoincrement()) // lot id
+  name         String?                                  // e.g. eBay bundle
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  purchases    Purchase[]                              // grouped items
+
+  @@map("lot")
+}
+
+////////////////////////////////////////////
+// 🖼️ MEDIA (IMAGES / FILES)
+////////////////////////////////////////////
+
+model Media {
+  id            Int        @id @default(autoincrement()) // media id
+  collectibleId Int?       @map("collectible_id")        // FK → Collectible
+  editionId     Int?       @map("edition_id")            // FK → Edition
+  url           String                                    // file URL
+  createdAt     DateTime   @default(now()) @map("created_at")
+
+  collectible   Collectible? @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
+  edition       Edition?     @relation(fields: [editionId], references: [id], onDelete: Cascade)
+
+  @@map("media")
+}
+
+////////////////////////////////////////////
+// 🏷️ ENUMS
+////////////////////////////////////////////
+
+enum SeriesFormat {
   MANGA
-  BOOKS
-  HOTWHEELS
+  ANIME
+  GAME
+  FILM
+  MUSIC
   OTHER
 }
 
-enum ItemStatus {
+enum Condition {
+  MINT
+  NEAR_MINT
+  EXCELLENT
+  GOOD
+  FAIR
+  POOR
+  DAMAGED
+}
+
+enum PurchaseStatus {
   OWNED
-  WISHLIST
-  ARCHIVED
+  SOLD
+  GIFTED
 }

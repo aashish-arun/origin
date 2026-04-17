@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aashish Arun Portfolio
+
+This repository contains my personal portfolio website built with **Next.js**, **TypeScript**, and **Tailwind CSS**. It showcases my projects, technical skills, and experience in web development, SharePoint solutions, and software engineering.
+
+---
+
+## About the Project
+
+This portfolio is designed to present my work in a structured, modern, and professional format. It highlights my development experience across frontend, backend, and enterprise tools such as SharePoint and Microsoft technologies.
+
+The website includes:
+
+- About Me
+- Tech Stack
+- Projects Showcase
+- Timeline / Experience
+- Contact Section
+
+The project is actively being improved, with continuous updates to features, UI, and content.
+
+---
+
+## Tech Stack
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### UI & Animations
+- Framer Motion
+- Lucide React
+- React Icons
+
+### Other Tools & Technologies
+- SharePoint Framework (SPFx)
+- PnPjs
+- Microsoft Entra ID
+- Power Automate
+- Microsoft Teams
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run Development Server
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Open in Browser
+Open http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The page will automatically update as you edit files.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+app/            # Application routes and pages  
+components/     # Reusable UI components  
+data/           # Static data (projects, tech stack, etc.)  
+public/         # Images and assets  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Modern responsive UI
+- Component-based architecture
+- Project detail pages with image galleries
+- Smooth animations using Framer Motion
+- Data-driven rendering for easy updates
+- Clean and professional portfolio layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Status
+
+This portfolio is currently **in development**.
+
+Ongoing improvements include:
+- Enhanced UI/UX refinements
+- Additional project case studies
+- Performance optimizations
+- Improved accessibility
+
+---
+
+## Author
+
+**Aashish Arun**  
+GitHub: https://github.com/aashish-arun

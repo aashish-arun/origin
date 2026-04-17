@@ -9,22 +9,35 @@
 * 🟢 You can import this file directly.
 */
 
-export const CollectionCategory = {
-  ANIME: 'ANIME',
-  GAMES: 'GAMES',
+export const SeriesFormat = {
   MANGA: 'MANGA',
-  BOOKS: 'BOOKS',
-  HOTWHEELS: 'HOTWHEELS',
+  ANIME: 'ANIME',
+  GAME: 'GAME',
+  FILM: 'FILM',
+  MUSIC: 'MUSIC',
   OTHER: 'OTHER'
 } as const
 
-export type CollectionCategory = (typeof CollectionCategory)[keyof typeof CollectionCategory]
+export type SeriesFormat = (typeof SeriesFormat)[keyof typeof SeriesFormat]
 
 
-export const ItemStatus = {
-  OWNED: 'OWNED',
-  WISHLIST: 'WISHLIST',
-  ARCHIVED: 'ARCHIVED'
+export const Condition = {
+  MINT: 'MINT',
+  NEAR_MINT: 'NEAR_MINT',
+  EXCELLENT: 'EXCELLENT',
+  GOOD: 'GOOD',
+  FAIR: 'FAIR',
+  POOR: 'POOR',
+  DAMAGED: 'DAMAGED'
 } as const
 
-export type ItemStatus = (typeof ItemStatus)[keyof typeof ItemStatus]
+export type Condition = (typeof Condition)[keyof typeof Condition]
+
+
+export const PurchaseStatus = {
+  OWNED: 'OWNED',
+  SOLD: 'SOLD',
+  GIFTED: 'GIFTED'
+} as const
+
+export type PurchaseStatus = (typeof PurchaseStatus)[keyof typeof PurchaseStatus]

@@ -8,5 +8,16 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/CollectionItem'
+export type * from './models/HealthCheck'
+export type * from './models/Admin'
+export type * from './models/Category'
+export type * from './models/Subtype'
+export type * from './models/Franchise'
+export type * from './models/Series'
+export type * from './models/Brand'
+export type * from './models/Collectible'
+export type * from './models/Edition'
+export type * from './models/Purchase'
+export type * from './models/Lot'
+export type * from './models/Media'
 export type * from './commonInputTypes'
