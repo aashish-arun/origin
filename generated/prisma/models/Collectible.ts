@@ -33,6 +33,8 @@ export type CollectibleAvgAggregateOutputType = {
   subtypeId: number | null
   franchiseId: number | null
   seriesId: number | null
+  characterId: number | null
+  seriesNumber: number | null
 }
 
 export type CollectibleSumAggregateOutputType = {
@@ -42,6 +44,8 @@ export type CollectibleSumAggregateOutputType = {
   subtypeId: number | null
   franchiseId: number | null
   seriesId: number | null
+  characterId: number | null
+  seriesNumber: number | null
 }
 
 export type CollectibleMinAggregateOutputType = {
@@ -49,11 +53,14 @@ export type CollectibleMinAggregateOutputType = {
   title: string | null
   description: string | null
   imageUrl: string | null
+  status: $Enums.CollectibleStatus | null
   brandId: number | null
   categoryId: number | null
   subtypeId: number | null
   franchiseId: number | null
   seriesId: number | null
+  characterId: number | null
+  seriesNumber: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -63,11 +70,14 @@ export type CollectibleMaxAggregateOutputType = {
   title: string | null
   description: string | null
   imageUrl: string | null
+  status: $Enums.CollectibleStatus | null
   brandId: number | null
   categoryId: number | null
   subtypeId: number | null
   franchiseId: number | null
   seriesId: number | null
+  characterId: number | null
+  seriesNumber: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -77,11 +87,14 @@ export type CollectibleCountAggregateOutputType = {
   title: number
   description: number
   imageUrl: number
+  status: number
   brandId: number
   categoryId: number
   subtypeId: number
   franchiseId: number
   seriesId: number
+  characterId: number
+  seriesNumber: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -95,6 +108,8 @@ export type CollectibleAvgAggregateInputType = {
   subtypeId?: true
   franchiseId?: true
   seriesId?: true
+  characterId?: true
+  seriesNumber?: true
 }
 
 export type CollectibleSumAggregateInputType = {
@@ -104,6 +119,8 @@ export type CollectibleSumAggregateInputType = {
   subtypeId?: true
   franchiseId?: true
   seriesId?: true
+  characterId?: true
+  seriesNumber?: true
 }
 
 export type CollectibleMinAggregateInputType = {
@@ -111,11 +128,14 @@ export type CollectibleMinAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  status?: true
   brandId?: true
   categoryId?: true
   subtypeId?: true
   franchiseId?: true
   seriesId?: true
+  characterId?: true
+  seriesNumber?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -125,11 +145,14 @@ export type CollectibleMaxAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  status?: true
   brandId?: true
   categoryId?: true
   subtypeId?: true
   franchiseId?: true
   seriesId?: true
+  characterId?: true
+  seriesNumber?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -139,11 +162,14 @@ export type CollectibleCountAggregateInputType = {
   title?: true
   description?: true
   imageUrl?: true
+  status?: true
   brandId?: true
   categoryId?: true
   subtypeId?: true
   franchiseId?: true
   seriesId?: true
+  characterId?: true
+  seriesNumber?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -240,11 +266,14 @@ export type CollectibleGroupByOutputType = {
   title: string
   description: string | null
   imageUrl: string | null
+  status: $Enums.CollectibleStatus
   brandId: number | null
   categoryId: number
   subtypeId: number
   franchiseId: number | null
   seriesId: number | null
+  characterId: number | null
+  seriesNumber: number | null
   createdAt: Date
   updatedAt: Date
   _count: CollectibleCountAggregateOutputType | null
@@ -277,11 +306,14 @@ export type CollectibleWhereInput = {
   title?: Prisma.StringFilter<"Collectible"> | string
   description?: Prisma.StringNullableFilter<"Collectible"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"Collectible"> | string | null
+  status?: Prisma.EnumCollectibleStatusFilter<"Collectible"> | $Enums.CollectibleStatus
   brandId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   categoryId?: Prisma.IntFilter<"Collectible"> | number
   subtypeId?: Prisma.IntFilter<"Collectible"> | number
   franchiseId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   seriesId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  characterId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  seriesNumber?: Prisma.IntNullableFilter<"Collectible"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
   brand?: Prisma.XOR<Prisma.BrandNullableScalarRelationFilter, Prisma.BrandWhereInput> | null
@@ -289,6 +321,7 @@ export type CollectibleWhereInput = {
   subtype?: Prisma.XOR<Prisma.SubtypeScalarRelationFilter, Prisma.SubtypeWhereInput>
   franchise?: Prisma.XOR<Prisma.FranchiseNullableScalarRelationFilter, Prisma.FranchiseWhereInput> | null
   series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  character?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
   editions?: Prisma.EditionListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
   media?: Prisma.MediaListRelationFilter
@@ -299,11 +332,14 @@ export type CollectibleOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   brandId?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrderInput | Prisma.SortOrder
   seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
+  characterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   brand?: Prisma.BrandOrderByWithRelationInput
@@ -311,6 +347,7 @@ export type CollectibleOrderByWithRelationInput = {
   subtype?: Prisma.SubtypeOrderByWithRelationInput
   franchise?: Prisma.FranchiseOrderByWithRelationInput
   series?: Prisma.SeriesOrderByWithRelationInput
+  character?: Prisma.CharacterOrderByWithRelationInput
   editions?: Prisma.EditionOrderByRelationAggregateInput
   purchases?: Prisma.PurchaseOrderByRelationAggregateInput
   media?: Prisma.MediaOrderByRelationAggregateInput
@@ -324,11 +361,14 @@ export type CollectibleWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Collectible"> | string
   description?: Prisma.StringNullableFilter<"Collectible"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"Collectible"> | string | null
+  status?: Prisma.EnumCollectibleStatusFilter<"Collectible"> | $Enums.CollectibleStatus
   brandId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   categoryId?: Prisma.IntFilter<"Collectible"> | number
   subtypeId?: Prisma.IntFilter<"Collectible"> | number
   franchiseId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   seriesId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  characterId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  seriesNumber?: Prisma.IntNullableFilter<"Collectible"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
   brand?: Prisma.XOR<Prisma.BrandNullableScalarRelationFilter, Prisma.BrandWhereInput> | null
@@ -336,6 +376,7 @@ export type CollectibleWhereUniqueInput = Prisma.AtLeast<{
   subtype?: Prisma.XOR<Prisma.SubtypeScalarRelationFilter, Prisma.SubtypeWhereInput>
   franchise?: Prisma.XOR<Prisma.FranchiseNullableScalarRelationFilter, Prisma.FranchiseWhereInput> | null
   series?: Prisma.XOR<Prisma.SeriesNullableScalarRelationFilter, Prisma.SeriesWhereInput> | null
+  character?: Prisma.XOR<Prisma.CharacterNullableScalarRelationFilter, Prisma.CharacterWhereInput> | null
   editions?: Prisma.EditionListRelationFilter
   purchases?: Prisma.PurchaseListRelationFilter
   media?: Prisma.MediaListRelationFilter
@@ -346,11 +387,14 @@ export type CollectibleOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   brandId?: Prisma.SortOrderInput | Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrderInput | Prisma.SortOrder
   seriesId?: Prisma.SortOrderInput | Prisma.SortOrder
+  characterId?: Prisma.SortOrderInput | Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CollectibleCountOrderByAggregateInput
@@ -368,11 +412,14 @@ export type CollectibleScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Collectible"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Collectible"> | string | null
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Collectible"> | string | null
+  status?: Prisma.EnumCollectibleStatusWithAggregatesFilter<"Collectible"> | $Enums.CollectibleStatus
   brandId?: Prisma.IntNullableWithAggregatesFilter<"Collectible"> | number | null
   categoryId?: Prisma.IntWithAggregatesFilter<"Collectible"> | number
   subtypeId?: Prisma.IntWithAggregatesFilter<"Collectible"> | number
   franchiseId?: Prisma.IntNullableWithAggregatesFilter<"Collectible"> | number | null
   seriesId?: Prisma.IntNullableWithAggregatesFilter<"Collectible"> | number | null
+  characterId?: Prisma.IntNullableWithAggregatesFilter<"Collectible"> | number | null
+  seriesNumber?: Prisma.IntNullableWithAggregatesFilter<"Collectible"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Collectible"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Collectible"> | Date | string
 }
@@ -381,6 +428,8 @@ export type CollectibleCreateInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
@@ -388,6 +437,7 @@ export type CollectibleCreateInput = {
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -398,11 +448,14 @@ export type CollectibleUncheckedCreateInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -414,6 +467,8 @@ export type CollectibleUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
@@ -421,6 +476,7 @@ export type CollectibleUpdateInput = {
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -431,11 +487,14 @@ export type CollectibleUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -448,11 +507,14 @@ export type CollectibleCreateManyInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -461,6 +523,8 @@ export type CollectibleUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -470,11 +534,14 @@ export type CollectibleUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -494,11 +561,14 @@ export type CollectibleCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   brandId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
   seriesId?: Prisma.SortOrder
+  characterId?: Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -510,6 +580,8 @@ export type CollectibleAvgOrderByAggregateInput = {
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
   seriesId?: Prisma.SortOrder
+  characterId?: Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrder
 }
 
 export type CollectibleMaxOrderByAggregateInput = {
@@ -517,11 +589,14 @@ export type CollectibleMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   brandId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
   seriesId?: Prisma.SortOrder
+  characterId?: Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -531,11 +606,14 @@ export type CollectibleMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   brandId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
   seriesId?: Prisma.SortOrder
+  characterId?: Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -547,6 +625,8 @@ export type CollectibleSumOrderByAggregateInput = {
   subtypeId?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
   seriesId?: Prisma.SortOrder
+  characterId?: Prisma.SortOrder
+  seriesNumber?: Prisma.SortOrder
 }
 
 export type CollectibleScalarRelationFilter = {
@@ -685,6 +765,48 @@ export type CollectibleUncheckedUpdateManyWithoutFranchiseNestedInput = {
   deleteMany?: Prisma.CollectibleScalarWhereInput | Prisma.CollectibleScalarWhereInput[]
 }
 
+export type CollectibleCreateNestedManyWithoutCharacterInput = {
+  create?: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput> | Prisma.CollectibleCreateWithoutCharacterInput[] | Prisma.CollectibleUncheckedCreateWithoutCharacterInput[]
+  connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutCharacterInput | Prisma.CollectibleCreateOrConnectWithoutCharacterInput[]
+  createMany?: Prisma.CollectibleCreateManyCharacterInputEnvelope
+  connect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+}
+
+export type CollectibleUncheckedCreateNestedManyWithoutCharacterInput = {
+  create?: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput> | Prisma.CollectibleCreateWithoutCharacterInput[] | Prisma.CollectibleUncheckedCreateWithoutCharacterInput[]
+  connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutCharacterInput | Prisma.CollectibleCreateOrConnectWithoutCharacterInput[]
+  createMany?: Prisma.CollectibleCreateManyCharacterInputEnvelope
+  connect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+}
+
+export type CollectibleUpdateManyWithoutCharacterNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput> | Prisma.CollectibleCreateWithoutCharacterInput[] | Prisma.CollectibleUncheckedCreateWithoutCharacterInput[]
+  connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutCharacterInput | Prisma.CollectibleCreateOrConnectWithoutCharacterInput[]
+  upsert?: Prisma.CollectibleUpsertWithWhereUniqueWithoutCharacterInput | Prisma.CollectibleUpsertWithWhereUniqueWithoutCharacterInput[]
+  createMany?: Prisma.CollectibleCreateManyCharacterInputEnvelope
+  set?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  disconnect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  delete?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  connect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  update?: Prisma.CollectibleUpdateWithWhereUniqueWithoutCharacterInput | Prisma.CollectibleUpdateWithWhereUniqueWithoutCharacterInput[]
+  updateMany?: Prisma.CollectibleUpdateManyWithWhereWithoutCharacterInput | Prisma.CollectibleUpdateManyWithWhereWithoutCharacterInput[]
+  deleteMany?: Prisma.CollectibleScalarWhereInput | Prisma.CollectibleScalarWhereInput[]
+}
+
+export type CollectibleUncheckedUpdateManyWithoutCharacterNestedInput = {
+  create?: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput> | Prisma.CollectibleCreateWithoutCharacterInput[] | Prisma.CollectibleUncheckedCreateWithoutCharacterInput[]
+  connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutCharacterInput | Prisma.CollectibleCreateOrConnectWithoutCharacterInput[]
+  upsert?: Prisma.CollectibleUpsertWithWhereUniqueWithoutCharacterInput | Prisma.CollectibleUpsertWithWhereUniqueWithoutCharacterInput[]
+  createMany?: Prisma.CollectibleCreateManyCharacterInputEnvelope
+  set?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  disconnect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  delete?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  connect?: Prisma.CollectibleWhereUniqueInput | Prisma.CollectibleWhereUniqueInput[]
+  update?: Prisma.CollectibleUpdateWithWhereUniqueWithoutCharacterInput | Prisma.CollectibleUpdateWithWhereUniqueWithoutCharacterInput[]
+  updateMany?: Prisma.CollectibleUpdateManyWithWhereWithoutCharacterInput | Prisma.CollectibleUpdateManyWithWhereWithoutCharacterInput[]
+  deleteMany?: Prisma.CollectibleScalarWhereInput | Prisma.CollectibleScalarWhereInput[]
+}
+
 export type CollectibleCreateNestedManyWithoutSeriesInput = {
   create?: Prisma.XOR<Prisma.CollectibleCreateWithoutSeriesInput, Prisma.CollectibleUncheckedCreateWithoutSeriesInput> | Prisma.CollectibleCreateWithoutSeriesInput[] | Prisma.CollectibleUncheckedCreateWithoutSeriesInput[]
   connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutSeriesInput | Prisma.CollectibleCreateOrConnectWithoutSeriesInput[]
@@ -769,6 +891,10 @@ export type CollectibleUncheckedUpdateManyWithoutBrandNestedInput = {
   deleteMany?: Prisma.CollectibleScalarWhereInput | Prisma.CollectibleScalarWhereInput[]
 }
 
+export type EnumCollectibleStatusFieldUpdateOperationsInput = {
+  set?: $Enums.CollectibleStatus
+}
+
 export type CollectibleCreateNestedOneWithoutEditionsInput = {
   create?: Prisma.XOR<Prisma.CollectibleCreateWithoutEditionsInput, Prisma.CollectibleUncheckedCreateWithoutEditionsInput>
   connectOrCreate?: Prisma.CollectibleCreateOrConnectWithoutEditionsInput
@@ -817,12 +943,15 @@ export type CollectibleCreateWithoutCategoryInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -833,10 +962,13 @@ export type CollectibleUncheckedCreateWithoutCategoryInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -878,11 +1010,14 @@ export type CollectibleScalarWhereInput = {
   title?: Prisma.StringFilter<"Collectible"> | string
   description?: Prisma.StringNullableFilter<"Collectible"> | string | null
   imageUrl?: Prisma.StringNullableFilter<"Collectible"> | string | null
+  status?: Prisma.EnumCollectibleStatusFilter<"Collectible"> | $Enums.CollectibleStatus
   brandId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   categoryId?: Prisma.IntFilter<"Collectible"> | number
   subtypeId?: Prisma.IntFilter<"Collectible"> | number
   franchiseId?: Prisma.IntNullableFilter<"Collectible"> | number | null
   seriesId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  characterId?: Prisma.IntNullableFilter<"Collectible"> | number | null
+  seriesNumber?: Prisma.IntNullableFilter<"Collectible"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Collectible"> | Date | string
 }
@@ -891,12 +1026,15 @@ export type CollectibleCreateWithoutSubtypeInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
   category: Prisma.CategoryCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -907,10 +1045,13 @@ export type CollectibleUncheckedCreateWithoutSubtypeInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -948,12 +1089,15 @@ export type CollectibleCreateWithoutFranchiseInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
   category: Prisma.CategoryCreateNestedOneWithoutCollectiblesInput
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -964,10 +1108,13 @@ export type CollectibleUncheckedCreateWithoutFranchiseInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1001,16 +1148,82 @@ export type CollectibleUpdateManyWithWhereWithoutFranchiseInput = {
   data: Prisma.XOR<Prisma.CollectibleUpdateManyMutationInput, Prisma.CollectibleUncheckedUpdateManyWithoutFranchiseInput>
 }
 
-export type CollectibleCreateWithoutSeriesInput = {
+export type CollectibleCreateWithoutCharacterInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
   category: Prisma.CategoryCreateNestedOneWithoutCollectiblesInput
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
+  series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
+  purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
+  media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
+}
+
+export type CollectibleUncheckedCreateWithoutCharacterInput = {
+  id?: number
+  title: string
+  description?: string | null
+  imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  brandId?: number | null
+  categoryId: number
+  subtypeId: number
+  franchiseId?: number | null
+  seriesId?: number | null
+  seriesNumber?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
+  purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutCollectibleInput
+  media?: Prisma.MediaUncheckedCreateNestedManyWithoutCollectibleInput
+}
+
+export type CollectibleCreateOrConnectWithoutCharacterInput = {
+  where: Prisma.CollectibleWhereUniqueInput
+  create: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput>
+}
+
+export type CollectibleCreateManyCharacterInputEnvelope = {
+  data: Prisma.CollectibleCreateManyCharacterInput | Prisma.CollectibleCreateManyCharacterInput[]
+  skipDuplicates?: boolean
+}
+
+export type CollectibleUpsertWithWhereUniqueWithoutCharacterInput = {
+  where: Prisma.CollectibleWhereUniqueInput
+  update: Prisma.XOR<Prisma.CollectibleUpdateWithoutCharacterInput, Prisma.CollectibleUncheckedUpdateWithoutCharacterInput>
+  create: Prisma.XOR<Prisma.CollectibleCreateWithoutCharacterInput, Prisma.CollectibleUncheckedCreateWithoutCharacterInput>
+}
+
+export type CollectibleUpdateWithWhereUniqueWithoutCharacterInput = {
+  where: Prisma.CollectibleWhereUniqueInput
+  data: Prisma.XOR<Prisma.CollectibleUpdateWithoutCharacterInput, Prisma.CollectibleUncheckedUpdateWithoutCharacterInput>
+}
+
+export type CollectibleUpdateManyWithWhereWithoutCharacterInput = {
+  where: Prisma.CollectibleScalarWhereInput
+  data: Prisma.XOR<Prisma.CollectibleUpdateManyMutationInput, Prisma.CollectibleUncheckedUpdateManyWithoutCharacterInput>
+}
+
+export type CollectibleCreateWithoutSeriesInput = {
+  title: string
+  description?: string | null
+  imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
+  category: Prisma.CategoryCreateNestedOneWithoutCollectiblesInput
+  subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
+  franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -1021,10 +1234,13 @@ export type CollectibleUncheckedCreateWithoutSeriesInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1062,12 +1278,15 @@ export type CollectibleCreateWithoutBrandInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutCollectiblesInput
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
@@ -1078,10 +1297,13 @@ export type CollectibleUncheckedCreateWithoutBrandInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1119,6 +1341,8 @@ export type CollectibleCreateWithoutEditionsInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
@@ -1126,6 +1350,7 @@ export type CollectibleCreateWithoutEditionsInput = {
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
 }
@@ -1135,11 +1360,14 @@ export type CollectibleUncheckedCreateWithoutEditionsInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   purchases?: Prisma.PurchaseUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1166,6 +1394,8 @@ export type CollectibleUpdateWithoutEditionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
@@ -1173,6 +1403,7 @@ export type CollectibleUpdateWithoutEditionsInput = {
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
 }
@@ -1182,11 +1413,14 @@ export type CollectibleUncheckedUpdateWithoutEditionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1197,6 +1431,8 @@ export type CollectibleCreateWithoutPurchasesInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
@@ -1204,6 +1440,7 @@ export type CollectibleCreateWithoutPurchasesInput = {
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   media?: Prisma.MediaCreateNestedManyWithoutCollectibleInput
 }
@@ -1213,11 +1450,14 @@ export type CollectibleUncheckedCreateWithoutPurchasesInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1244,6 +1484,8 @@ export type CollectibleUpdateWithoutPurchasesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
@@ -1251,6 +1493,7 @@ export type CollectibleUpdateWithoutPurchasesInput = {
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
 }
@@ -1260,11 +1503,14 @@ export type CollectibleUncheckedUpdateWithoutPurchasesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1275,6 +1521,8 @@ export type CollectibleCreateWithoutMediaInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   brand?: Prisma.BrandCreateNestedOneWithoutCollectiblesInput
@@ -1282,6 +1530,7 @@ export type CollectibleCreateWithoutMediaInput = {
   subtype: Prisma.SubtypeCreateNestedOneWithoutCollectiblesInput
   franchise?: Prisma.FranchiseCreateNestedOneWithoutCollectiblesInput
   series?: Prisma.SeriesCreateNestedOneWithoutCollectiblesInput
+  character?: Prisma.CharacterCreateNestedOneWithoutCollectiblesInput
   editions?: Prisma.EditionCreateNestedManyWithoutCollectibleInput
   purchases?: Prisma.PurchaseCreateNestedManyWithoutCollectibleInput
 }
@@ -1291,11 +1540,14 @@ export type CollectibleUncheckedCreateWithoutMediaInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   editions?: Prisma.EditionUncheckedCreateNestedManyWithoutCollectibleInput
@@ -1322,6 +1574,8 @@ export type CollectibleUpdateWithoutMediaInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
@@ -1329,6 +1583,7 @@ export type CollectibleUpdateWithoutMediaInput = {
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
 }
@@ -1338,11 +1593,14 @@ export type CollectibleUncheckedUpdateWithoutMediaInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1354,10 +1612,13 @@ export type CollectibleCreateManyCategoryInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1366,12 +1627,15 @@ export type CollectibleUpdateWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -1382,10 +1646,13 @@ export type CollectibleUncheckedUpdateWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1398,10 +1665,13 @@ export type CollectibleUncheckedUpdateManyWithoutCategoryInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1411,10 +1681,13 @@ export type CollectibleCreateManySubtypeInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1423,12 +1696,15 @@ export type CollectibleUpdateWithoutSubtypeInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
   category?: Prisma.CategoryUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -1439,10 +1715,13 @@ export type CollectibleUncheckedUpdateWithoutSubtypeInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1455,10 +1734,13 @@ export type CollectibleUncheckedUpdateManyWithoutSubtypeInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1468,10 +1750,13 @@ export type CollectibleCreateManyFranchiseInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1480,12 +1765,15 @@ export type CollectibleUpdateWithoutFranchiseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
   category?: Prisma.CategoryUpdateOneRequiredWithoutCollectiblesNestedInput
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -1496,10 +1784,13 @@ export type CollectibleUncheckedUpdateWithoutFranchiseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1512,10 +1803,82 @@ export type CollectibleUncheckedUpdateManyWithoutFranchiseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CollectibleCreateManyCharacterInput = {
+  id?: number
+  title: string
+  description?: string | null
+  imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
+  brandId?: number | null
+  categoryId: number
+  subtypeId: number
+  franchiseId?: number | null
+  seriesId?: number | null
+  seriesNumber?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type CollectibleUpdateWithoutCharacterInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutCollectiblesNestedInput
+  subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
+  franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
+  series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
+  purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
+  media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
+}
+
+export type CollectibleUncheckedUpdateWithoutCharacterInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
+  franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
+  purchases?: Prisma.PurchaseUncheckedUpdateManyWithoutCollectibleNestedInput
+  media?: Prisma.MediaUncheckedUpdateManyWithoutCollectibleNestedInput
+}
+
+export type CollectibleUncheckedUpdateManyWithoutCharacterInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
+  subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
+  franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1525,10 +1888,13 @@ export type CollectibleCreateManySeriesInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   brandId?: number | null
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1537,12 +1903,15 @@ export type CollectibleUpdateWithoutSeriesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   brand?: Prisma.BrandUpdateOneWithoutCollectiblesNestedInput
   category?: Prisma.CategoryUpdateOneRequiredWithoutCollectiblesNestedInput
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -1553,10 +1922,13 @@ export type CollectibleUncheckedUpdateWithoutSeriesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1569,10 +1941,13 @@ export type CollectibleUncheckedUpdateManyWithoutSeriesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   brandId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1582,10 +1957,13 @@ export type CollectibleCreateManyBrandInput = {
   title: string
   description?: string | null
   imageUrl?: string | null
+  status?: $Enums.CollectibleStatus
   categoryId: number
   subtypeId: number
   franchiseId?: number | null
   seriesId?: number | null
+  characterId?: number | null
+  seriesNumber?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1594,12 +1972,15 @@ export type CollectibleUpdateWithoutBrandInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   category?: Prisma.CategoryUpdateOneRequiredWithoutCollectiblesNestedInput
   subtype?: Prisma.SubtypeUpdateOneRequiredWithoutCollectiblesNestedInput
   franchise?: Prisma.FranchiseUpdateOneWithoutCollectiblesNestedInput
   series?: Prisma.SeriesUpdateOneWithoutCollectiblesNestedInput
+  character?: Prisma.CharacterUpdateOneWithoutCollectiblesNestedInput
   editions?: Prisma.EditionUpdateManyWithoutCollectibleNestedInput
   purchases?: Prisma.PurchaseUpdateManyWithoutCollectibleNestedInput
   media?: Prisma.MediaUpdateManyWithoutCollectibleNestedInput
@@ -1610,10 +1991,13 @@ export type CollectibleUncheckedUpdateWithoutBrandInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   editions?: Prisma.EditionUncheckedUpdateManyWithoutCollectibleNestedInput
@@ -1626,10 +2010,13 @@ export type CollectibleUncheckedUpdateManyWithoutBrandInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumCollectibleStatusFieldUpdateOperationsInput | $Enums.CollectibleStatus
   categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   subtypeId?: Prisma.IntFieldUpdateOperationsInput | number
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seriesId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  characterId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seriesNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1688,11 +2075,14 @@ export type CollectibleSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  status?: boolean
   brandId?: boolean
   categoryId?: boolean
   subtypeId?: boolean
   franchiseId?: boolean
   seriesId?: boolean
+  characterId?: boolean
+  seriesNumber?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   brand?: boolean | Prisma.Collectible$brandArgs<ExtArgs>
@@ -1700,6 +2090,7 @@ export type CollectibleSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
   editions?: boolean | Prisma.Collectible$editionsArgs<ExtArgs>
   purchases?: boolean | Prisma.Collectible$purchasesArgs<ExtArgs>
   media?: boolean | Prisma.Collectible$mediaArgs<ExtArgs>
@@ -1711,11 +2102,14 @@ export type CollectibleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  status?: boolean
   brandId?: boolean
   categoryId?: boolean
   subtypeId?: boolean
   franchiseId?: boolean
   seriesId?: boolean
+  characterId?: boolean
+  seriesNumber?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   brand?: boolean | Prisma.Collectible$brandArgs<ExtArgs>
@@ -1723,6 +2117,7 @@ export type CollectibleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
 }, ExtArgs["result"]["collectible"]>
 
 export type CollectibleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1730,11 +2125,14 @@ export type CollectibleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  status?: boolean
   brandId?: boolean
   categoryId?: boolean
   subtypeId?: boolean
   franchiseId?: boolean
   seriesId?: boolean
+  characterId?: boolean
+  seriesNumber?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   brand?: boolean | Prisma.Collectible$brandArgs<ExtArgs>
@@ -1742,6 +2140,7 @@ export type CollectibleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
 }, ExtArgs["result"]["collectible"]>
 
 export type CollectibleSelectScalar = {
@@ -1749,22 +2148,26 @@ export type CollectibleSelectScalar = {
   title?: boolean
   description?: boolean
   imageUrl?: boolean
+  status?: boolean
   brandId?: boolean
   categoryId?: boolean
   subtypeId?: boolean
   franchiseId?: boolean
   seriesId?: boolean
+  characterId?: boolean
+  seriesNumber?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CollectibleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "brandId" | "categoryId" | "subtypeId" | "franchiseId" | "seriesId" | "createdAt" | "updatedAt", ExtArgs["result"]["collectible"]>
+export type CollectibleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "status" | "brandId" | "categoryId" | "subtypeId" | "franchiseId" | "seriesId" | "characterId" | "seriesNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["collectible"]>
 export type CollectibleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   brand?: boolean | Prisma.Collectible$brandArgs<ExtArgs>
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
   editions?: boolean | Prisma.Collectible$editionsArgs<ExtArgs>
   purchases?: boolean | Prisma.Collectible$purchasesArgs<ExtArgs>
   media?: boolean | Prisma.Collectible$mediaArgs<ExtArgs>
@@ -1776,6 +2179,7 @@ export type CollectibleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
 }
 export type CollectibleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   brand?: boolean | Prisma.Collectible$brandArgs<ExtArgs>
@@ -1783,6 +2187,7 @@ export type CollectibleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
   subtype?: boolean | Prisma.SubtypeDefaultArgs<ExtArgs>
   franchise?: boolean | Prisma.Collectible$franchiseArgs<ExtArgs>
   series?: boolean | Prisma.Collectible$seriesArgs<ExtArgs>
+  character?: boolean | Prisma.Collectible$characterArgs<ExtArgs>
 }
 
 export type $CollectiblePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1793,6 +2198,7 @@ export type $CollectiblePayload<ExtArgs extends runtime.Types.Extensions.Interna
     subtype: Prisma.$SubtypePayload<ExtArgs>
     franchise: Prisma.$FranchisePayload<ExtArgs> | null
     series: Prisma.$SeriesPayload<ExtArgs> | null
+    character: Prisma.$CharacterPayload<ExtArgs> | null
     editions: Prisma.$EditionPayload<ExtArgs>[]
     purchases: Prisma.$PurchasePayload<ExtArgs>[]
     media: Prisma.$MediaPayload<ExtArgs>[]
@@ -1802,11 +2208,14 @@ export type $CollectiblePayload<ExtArgs extends runtime.Types.Extensions.Interna
     title: string
     description: string | null
     imageUrl: string | null
+    status: $Enums.CollectibleStatus
     brandId: number | null
     categoryId: number
     subtypeId: number
     franchiseId: number | null
     seriesId: number | null
+    characterId: number | null
+    seriesNumber: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["collectible"]>
@@ -2208,6 +2617,7 @@ export interface Prisma__CollectibleClient<T, Null = never, ExtArgs extends runt
   subtype<T extends Prisma.SubtypeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubtypeDefaultArgs<ExtArgs>>): Prisma.Prisma__SubtypeClient<runtime.Types.Result.GetResult<Prisma.$SubtypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   franchise<T extends Prisma.Collectible$franchiseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$franchiseArgs<ExtArgs>>): Prisma.Prisma__FranchiseClient<runtime.Types.Result.GetResult<Prisma.$FranchisePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   series<T extends Prisma.Collectible$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$seriesArgs<ExtArgs>>): Prisma.Prisma__SeriesClient<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  character<T extends Prisma.Collectible$characterArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$characterArgs<ExtArgs>>): Prisma.Prisma__CharacterClient<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   editions<T extends Prisma.Collectible$editionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$editionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchases<T extends Prisma.Collectible$purchasesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   media<T extends Prisma.Collectible$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Collectible$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2244,11 +2654,14 @@ export interface CollectibleFieldRefs {
   readonly title: Prisma.FieldRef<"Collectible", 'String'>
   readonly description: Prisma.FieldRef<"Collectible", 'String'>
   readonly imageUrl: Prisma.FieldRef<"Collectible", 'String'>
+  readonly status: Prisma.FieldRef<"Collectible", 'CollectibleStatus'>
   readonly brandId: Prisma.FieldRef<"Collectible", 'Int'>
   readonly categoryId: Prisma.FieldRef<"Collectible", 'Int'>
   readonly subtypeId: Prisma.FieldRef<"Collectible", 'Int'>
   readonly franchiseId: Prisma.FieldRef<"Collectible", 'Int'>
   readonly seriesId: Prisma.FieldRef<"Collectible", 'Int'>
+  readonly characterId: Prisma.FieldRef<"Collectible", 'Int'>
+  readonly seriesNumber: Prisma.FieldRef<"Collectible", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Collectible", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Collectible", 'DateTime'>
 }
@@ -2706,6 +3119,25 @@ export type Collectible$seriesArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.SeriesInclude<ExtArgs> | null
   where?: Prisma.SeriesWhereInput
+}
+
+/**
+ * Collectible.character
+ */
+export type Collectible$characterArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Character
+   */
+  select?: Prisma.CharacterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Character
+   */
+  omit?: Prisma.CharacterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CharacterInclude<ExtArgs> | null
+  where?: Prisma.CharacterWhereInput
 }
 
 /**

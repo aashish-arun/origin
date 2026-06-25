@@ -43,6 +43,16 @@ export type Subtype = Prisma.SubtypeModel
  */
 export type Franchise = Prisma.FranchiseModel
 /**
+ * Model Character
+ * 
+ */
+export type Character = Prisma.CharacterModel
+/**
+ * Model CharacterReference
+ * 
+ */
+export type CharacterReference = Prisma.CharacterReferenceModel
+/**
  * Model Series
  * 
  */

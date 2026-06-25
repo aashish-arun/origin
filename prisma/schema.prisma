@@ -7,207 +7,255 @@ datasource db {
   provider = "postgresql"
 }
 
-////////////////////////////////////////////
-// 🔐 AUTH / SYSTEM MODELS
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 🔐 SYSTEM / AUTH
+////////////////////////////////////////////////////////////
 
 model HealthCheck {
-  id        String   @id @default(uuid()) @db.Uuid // unique health check id
-  message   String?                                // optional message
-  createdAt DateTime @default(now()) @map("created_at") // timestamp
+  id        String   @id @default(uuid()) @db.Uuid
+  message   String?
+  createdAt DateTime @default(now()) @map("created_at")
+
   @@map("health_check")
 }
 
 model Admin {
-  userId    String   @id @db.Uuid @map("user_id") // admin user id
-  isActive  Boolean  @default(true) @map("is_active") // active flag
+  userId    String   @id @db.Uuid @map("user_id")
+  isActive  Boolean  @default(true) @map("is_active")
   createdAt DateTime @default(now()) @map("created_at")
+
   @@map("admin")
 }
 
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // 🗂️ CATEGORY / SUBTYPE
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 model Category {
-  id           Int          @id @default(autoincrement()) // category id
-  name         String       @unique                      // e.g. Figures
-  icon         String?                                  // optional icon
-  createdAt    DateTime     @default(now()) @map("created_at")
-  updatedAt    DateTime     @updatedAt @map("updated_at")
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  icon         String?
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
 
-  subtypes     Subtype[]                               // child subtypes
-  collectibles Collectible[]                           // items in category
+  subtypes     Subtype[]
+  collectibles Collectible[]
 
   @@map("category")
 }
 
 model Subtype {
-  id           Int        @id @default(autoincrement()) // subtype id
-  name         String                                    // e.g. Prize Figure
-  categoryId   Int        @map("category_id")            // FK → Category
+  id           Int        @id @default(autoincrement())
+  name         String
+  categoryId   Int        @map("category_id")
   createdAt    DateTime   @default(now()) @map("created_at")
   updatedAt    DateTime   @updatedAt @map("updated_at")
 
   category     Category   @relation(fields: [categoryId], references: [id])
   collectibles Collectible[]
 
-  @@unique([name, categoryId])                          // no duplicate subtype per category
+  @@unique([name, categoryId])
   @@index([categoryId])
   @@map("subtype")
 }
 
-////////////////////////////////////////////
-// 🎬 FRANCHISE / SERIES
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 🎬 FRANCHISE / CHARACTER / SERIES
+////////////////////////////////////////////////////////////
 
 model Franchise {
-  id           Int          @id @default(autoincrement()) // franchise id
-  name         String       @unique                      // e.g. One Piece
-  createdAt    DateTime     @default(now()) @map("created_at")
-  updatedAt    DateTime     @updatedAt @map("updated_at")
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  iconUrl      String?    @map("icon_url")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
 
-  series       Series[]                                 // related series
-  collectibles Collectible[]                           // direct items
+  characters   Character[]
+  series       Series[]
+  collectibles Collectible[]
 
   @@map("franchise")
 }
 
-model Series {
-  id           Int          @id @default(autoincrement()) // series id
-  name         String                                    // e.g. GLITTER & GLAMOURS
-  format       SeriesFormat                              // enum type
-  totalUnits   Int?       @map("total_units")             // optional count
-  notes        String?                                   // optional notes
-  franchiseId  Int        @map("franchise_id")            // FK → Franchise
+model Character {
+  id           Int        @id @default(autoincrement())
+  name         String
+  franchiseId  Int?       @map("franchise_id")
+  iconUrl      String?    @map("icon_url")
+  notes        String?
   createdAt    DateTime   @default(now()) @map("created_at")
   updatedAt    DateTime   @updatedAt @map("updated_at")
 
-  franchise    Franchise   @relation(fields: [franchiseId], references: [id])
+  franchise    Franchise? @relation(fields: [franchiseId], references: [id], onDelete: SetNull)
+  collectibles Collectible[]
+  references   CharacterReference[]
+
+  @@unique([name, franchiseId])
+  @@index([franchiseId])
+  @@map("character")
+}
+
+model CharacterReference {
+  id           Int           @id @default(autoincrement())
+  characterId  Int           @map("character_id")
+
+  type         ReferenceType
+  url          String
+  label        String?
+
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  character    Character     @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@index([characterId])
+  @@map("character_reference")
+}
+
+model Series {
+  id           Int          @id @default(autoincrement())
+  name         String
+  format       SeriesFormat
+  totalUnits   Int?         @map("total_units")
+  notes        String?
+  franchiseId  Int          @map("franchise_id")
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  franchise    Franchise    @relation(fields: [franchiseId], references: [id])
   collectibles Collectible[]
   editions     Edition[]
 
-  @@unique([name, franchiseId])                          // unique per franchise
+  @@unique([name, franchiseId])
   @@index([franchiseId])
   @@map("series")
 }
 
-////////////////////////////////////////////
-// 🏭 BRAND (MANUFACTURER)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 🏭 BRAND
+////////////////////////////////////////////////////////////
 
 model Brand {
-  id           Int          @id @default(autoincrement()) // brand id
-  name         String       @unique                      // e.g. Banpresto
-  createdAt    DateTime     @default(now()) @map("created_at")
-  updatedAt    DateTime     @updatedAt @map("updated_at")
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  iconUrl      String?    @map("icon_url")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
 
-  collectibles Collectible[]                            // items made by brand
+  collectibles Collectible[]
 
   @@map("brand")
 }
 
-////////////////////////////////////////////
-// 🎯 COLLECTIBLE (BASE ITEM)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 🎯 COLLECTIBLE (MAIN ITEM)
+////////////////////////////////////////////////////////////
 
 model Collectible {
-  id           Int        @id @default(autoincrement()) // main item id
-  title        String                                   // e.g. Nami Figure
-  description  String?                                  // optional details
-  imageUrl     String?    @map("image_url")              // primary image
+  id           Int               @id @default(autoincrement())
+  title        String
+  description  String?
+  imageUrl     String?           @map("image_url")
 
-  brandId      Int?       @map("brand_id")               // FK → Brand
-  categoryId   Int        @map("category_id")            // FK → Category
-  subtypeId    Int        @map("subtype_id")             // FK → Subtype
-  franchiseId  Int?       @map("franchise_id")           // FK → Franchise
-  seriesId     Int?       @map("series_id")              // FK → Series
+  status       CollectibleStatus @default(OWNED)
 
-  createdAt    DateTime   @default(now()) @map("created_at")
-  updatedAt    DateTime   @updatedAt @map("updated_at")
+  brandId      Int?              @map("brand_id")
+  categoryId   Int               @map("category_id")
+  subtypeId    Int               @map("subtype_id")
+  franchiseId  Int?              @map("franchise_id")
+  seriesId     Int?              @map("series_id")
+  characterId  Int?              @map("character_id")
 
-  brand        Brand?     @relation(fields: [brandId], references: [id], onDelete: SetNull)
-  category     Category   @relation(fields: [categoryId], references: [id])
-  subtype      Subtype    @relation(fields: [subtypeId], references: [id])
-  franchise    Franchise? @relation(fields: [franchiseId], references: [id], onDelete: SetNull)
-  series       Series?    @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  seriesNumber Int?              @map("series_number")
 
-  editions     Edition[]                               // variants
-  purchases    Purchase[]                              // owned items
-  media        Media[]                                 // images
+  createdAt    DateTime          @default(now()) @map("created_at")
+  updatedAt    DateTime          @updatedAt @map("updated_at")
+
+  brand        Brand?            @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  category     Category          @relation(fields: [categoryId], references: [id])
+  subtype      Subtype           @relation(fields: [subtypeId], references: [id])
+  franchise    Franchise?        @relation(fields: [franchiseId], references: [id], onDelete: SetNull)
+  series       Series?           @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  character    Character?        @relation(fields: [characterId], references: [id], onDelete: SetNull)
+
+  editions     Edition[]
+  purchases    Purchase[]
+  media        Media[]
 
   @@index([categoryId])
   @@index([seriesId])
   @@index([brandId])
+  @@index([status])
+  @@index([characterId])
+  @@index([seriesNumber])
   @@map("collectible")
 }
 
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // 🎨 EDITION (VARIANTS)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 model Edition {
-  id            Int        @id @default(autoincrement()) // edition id
-  collectibleId Int        @map("collectible_id")        // FK → Collectible
-  seriesId      Int?       @map("series_id")             // optional FK → Series
+  id             Int        @id @default(autoincrement())
+  collectibleId  Int        @map("collectible_id")
+  seriesId       Int?       @map("series_id")
 
-  editionNumber Int?       @map("edition_number")        // version number
-  editionName   String?    @map("edition_name")          // e.g. Version A
-  exclusiveLabel String?   @map("exclusive_label")       // e.g. Limited
+  editionNumber  Int?       @map("edition_number")
+  editionName    String?    @map("edition_name")
+  exclusiveLabel String?    @map("exclusive_label")
 
-  releaseDate   DateTime?  @map("release_date")          // release date
-  editionSize   Int?       @map("edition_size")          // production count
-  sku           String?                                 // product code
+  releaseDate    DateTime?  @map("release_date")
+  editionSize    Int?       @map("edition_size")
+  sku            String?
 
-  createdAt     DateTime   @default(now()) @map("created_at")
-  updatedAt     DateTime   @updatedAt @map("updated_at")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
 
-  collectible   Collectible @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
-  series        Series?     @relation(fields: [seriesId], references: [id], onDelete: SetNull)
-  purchases     Purchase[]
-  media         Media[]
+  collectible    Collectible @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
+  series         Series?     @relation(fields: [seriesId], references: [id], onDelete: SetNull)
+  purchases      Purchase[]
+  media          Media[]
 
   @@index([collectibleId])
   @@index([seriesId])
   @@map("edition")
 }
 
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // 🧾 PURCHASE (REAL OWNED ITEM)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 model Purchase {
-  id             Int        @id @default(autoincrement()) // purchase id
-  collectibleId  Int        @map("collectible_id")        // FK → Collectible
-  editionId      Int?       @map("edition_id")            // FK → Edition
+  id             Int            @id @default(autoincrement())
+  collectibleId  Int            @map("collectible_id")
+  editionId      Int?           @map("edition_id")
 
-  condition      Condition                              // item condition
-  status         PurchaseStatus                         // owned/sold/gifted
-  purchasedAt    DateTime   @map("purchased_at")         // purchase date
+  condition      Condition
+  status         PurchaseStatus
+  purchasedAt    DateTime       @map("purchased_at")
 
-  storeName      String?    @map("store_name")           // where bought
-  receiptUrl     String?    @map("receipt_url")          // proof
+  storeName      String?        @map("store_name")
+  receiptUrl     String?        @map("receipt_url")
 
-  purchasePrice  Decimal?   @map("purchase_price") @db.Decimal(10,2)
-  taxAmount      Decimal?   @map("tax_amount") @db.Decimal(10,2)
-  shippingCost   Decimal?   @map("shipping_cost") @db.Decimal(10,2)
-  totalCost      Decimal?   @map("total_cost") @db.Decimal(10,2)
+  purchasePrice  Decimal?       @map("purchase_price") @db.Decimal(10,2)
+  taxAmount      Decimal?       @map("tax_amount") @db.Decimal(10,2)
+  shippingCost   Decimal?       @map("shipping_cost") @db.Decimal(10,2)
+  totalCost      Decimal?       @map("total_cost") @db.Decimal(10,2)
 
-  resaleDate     DateTime?  @map("resale_date")          // sold date
-  resalePrice    Decimal?   @map("resale_price") @db.Decimal(10,2)
+  resaleDate     DateTime?      @map("resale_date")
+  resalePrice    Decimal?       @map("resale_price") @db.Decimal(10,2)
 
-  lotId          Int?       @map("lot_id")               // FK → Lot
-  serialNumber   String?    @map("serial_number")        // unique item id
-  location       String?                                // storage location
+  lotId          Int?           @map("lot_id")
+  serialNumber   String?        @map("serial_number")
+  location       String?
 
-  notes          String?                                // extra info
+  notes          String?
 
-  createdAt      DateTime   @default(now()) @map("created_at")
-  updatedAt      DateTime   @updatedAt @map("updated_at")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
 
-  collectible    Collectible @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
-  edition        Edition?    @relation(fields: [editionId], references: [id], onDelete: SetNull)
-  lot            Lot?        @relation(fields: [lotId], references: [id], onDelete: SetNull)
+  collectible    Collectible    @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
+  edition        Edition?       @relation(fields: [editionId], references: [id], onDelete: SetNull)
+  lot            Lot?           @relation(fields: [lotId], references: [id], onDelete: SetNull)
 
   @@index([collectibleId])
   @@index([status])
@@ -215,31 +263,31 @@ model Purchase {
   @@map("purchase")
 }
 
-////////////////////////////////////////////
-// 📦 LOT (GROUP PURCHASE)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 📦 LOT
+////////////////////////////////////////////////////////////
 
 model Lot {
-  id           Int        @id @default(autoincrement()) // lot id
-  name         String?                                  // e.g. eBay bundle
-  createdAt    DateTime   @default(now()) @map("created_at")
-  updatedAt    DateTime   @updatedAt @map("updated_at")
+  id        Int        @id @default(autoincrement())
+  name      String?
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
 
-  purchases    Purchase[]                              // grouped items
+  purchases Purchase[]
 
   @@map("lot")
 }
 
-////////////////////////////////////////////
-// 🖼️ MEDIA (IMAGES / FILES)
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// 🖼️ MEDIA (IMAGES)
+////////////////////////////////////////////////////////////
 
 model Media {
-  id            Int        @id @default(autoincrement()) // media id
-  collectibleId Int?       @map("collectible_id")        // FK → Collectible
-  editionId     Int?       @map("edition_id")            // FK → Edition
-  url           String                                    // file URL
-  createdAt     DateTime   @default(now()) @map("created_at")
+  id            Int          @id @default(autoincrement())
+  collectibleId Int?         @map("collectible_id")
+  editionId     Int?         @map("edition_id")
+  url           String
+  createdAt     DateTime     @default(now()) @map("created_at")
 
   collectible   Collectible? @relation(fields: [collectibleId], references: [id], onDelete: Cascade)
   edition       Edition?     @relation(fields: [editionId], references: [id], onDelete: Cascade)
@@ -247,9 +295,15 @@ model Media {
   @@map("media")
 }
 
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 // 🏷️ ENUMS
-////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+enum CollectibleStatus {
+  OWNED
+  PLANNED
+  WISHLIST
+}
 
 enum SeriesFormat {
   MANGA
@@ -257,6 +311,13 @@ enum SeriesFormat {
   GAME
   FILM
   MUSIC
+  OTHER
+}
+
+enum ReferenceType {
+  WIKIPEDIA
+  OFFICIAL
+  FANDOM
   OTHER
 }
 

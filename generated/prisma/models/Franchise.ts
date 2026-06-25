@@ -208,6 +208,7 @@ export type FranchiseWhereInput = {
   name?: Prisma.StringFilter<"Franchise"> | string
   createdAt?: Prisma.DateTimeFilter<"Franchise"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Franchise"> | Date | string
+  characters?: Prisma.CharacterListRelationFilter
   series?: Prisma.SeriesListRelationFilter
   collectibles?: Prisma.CollectibleListRelationFilter
 }
@@ -217,6 +218,7 @@ export type FranchiseOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  characters?: Prisma.CharacterOrderByRelationAggregateInput
   series?: Prisma.SeriesOrderByRelationAggregateInput
   collectibles?: Prisma.CollectibleOrderByRelationAggregateInput
 }
@@ -229,6 +231,7 @@ export type FranchiseWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.FranchiseWhereInput | Prisma.FranchiseWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Franchise"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Franchise"> | Date | string
+  characters?: Prisma.CharacterListRelationFilter
   series?: Prisma.SeriesListRelationFilter
   collectibles?: Prisma.CollectibleListRelationFilter
 }, "id" | "name">
@@ -259,6 +262,7 @@ export type FranchiseCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterCreateNestedManyWithoutFranchiseInput
   series?: Prisma.SeriesCreateNestedManyWithoutFranchiseInput
   collectibles?: Prisma.CollectibleCreateNestedManyWithoutFranchiseInput
 }
@@ -268,6 +272,7 @@ export type FranchiseUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutFranchiseInput
   series?: Prisma.SeriesUncheckedCreateNestedManyWithoutFranchiseInput
   collectibles?: Prisma.CollectibleUncheckedCreateNestedManyWithoutFranchiseInput
 }
@@ -276,6 +281,7 @@ export type FranchiseUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUpdateManyWithoutFranchiseNestedInput
   series?: Prisma.SeriesUpdateManyWithoutFranchiseNestedInput
   collectibles?: Prisma.CollectibleUpdateManyWithoutFranchiseNestedInput
 }
@@ -285,6 +291,7 @@ export type FranchiseUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutFranchiseNestedInput
   series?: Prisma.SeriesUncheckedUpdateManyWithoutFranchiseNestedInput
   collectibles?: Prisma.CollectibleUncheckedUpdateManyWithoutFranchiseNestedInput
 }
@@ -338,14 +345,30 @@ export type FranchiseSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
 }
 
+export type FranchiseNullableScalarRelationFilter = {
+  is?: Prisma.FranchiseWhereInput | null
+  isNot?: Prisma.FranchiseWhereInput | null
+}
+
 export type FranchiseScalarRelationFilter = {
   is?: Prisma.FranchiseWhereInput
   isNot?: Prisma.FranchiseWhereInput
 }
 
-export type FranchiseNullableScalarRelationFilter = {
-  is?: Prisma.FranchiseWhereInput | null
-  isNot?: Prisma.FranchiseWhereInput | null
+export type FranchiseCreateNestedOneWithoutCharactersInput = {
+  create?: Prisma.XOR<Prisma.FranchiseCreateWithoutCharactersInput, Prisma.FranchiseUncheckedCreateWithoutCharactersInput>
+  connectOrCreate?: Prisma.FranchiseCreateOrConnectWithoutCharactersInput
+  connect?: Prisma.FranchiseWhereUniqueInput
+}
+
+export type FranchiseUpdateOneWithoutCharactersNestedInput = {
+  create?: Prisma.XOR<Prisma.FranchiseCreateWithoutCharactersInput, Prisma.FranchiseUncheckedCreateWithoutCharactersInput>
+  connectOrCreate?: Prisma.FranchiseCreateOrConnectWithoutCharactersInput
+  upsert?: Prisma.FranchiseUpsertWithoutCharactersInput
+  disconnect?: Prisma.FranchiseWhereInput | boolean
+  delete?: Prisma.FranchiseWhereInput | boolean
+  connect?: Prisma.FranchiseWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FranchiseUpdateToOneWithWhereWithoutCharactersInput, Prisma.FranchiseUpdateWithoutCharactersInput>, Prisma.FranchiseUncheckedUpdateWithoutCharactersInput>
 }
 
 export type FranchiseCreateNestedOneWithoutSeriesInput = {
@@ -378,10 +401,61 @@ export type FranchiseUpdateOneWithoutCollectiblesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FranchiseUpdateToOneWithWhereWithoutCollectiblesInput, Prisma.FranchiseUpdateWithoutCollectiblesInput>, Prisma.FranchiseUncheckedUpdateWithoutCollectiblesInput>
 }
 
+export type FranchiseCreateWithoutCharactersInput = {
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  series?: Prisma.SeriesCreateNestedManyWithoutFranchiseInput
+  collectibles?: Prisma.CollectibleCreateNestedManyWithoutFranchiseInput
+}
+
+export type FranchiseUncheckedCreateWithoutCharactersInput = {
+  id?: number
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  series?: Prisma.SeriesUncheckedCreateNestedManyWithoutFranchiseInput
+  collectibles?: Prisma.CollectibleUncheckedCreateNestedManyWithoutFranchiseInput
+}
+
+export type FranchiseCreateOrConnectWithoutCharactersInput = {
+  where: Prisma.FranchiseWhereUniqueInput
+  create: Prisma.XOR<Prisma.FranchiseCreateWithoutCharactersInput, Prisma.FranchiseUncheckedCreateWithoutCharactersInput>
+}
+
+export type FranchiseUpsertWithoutCharactersInput = {
+  update: Prisma.XOR<Prisma.FranchiseUpdateWithoutCharactersInput, Prisma.FranchiseUncheckedUpdateWithoutCharactersInput>
+  create: Prisma.XOR<Prisma.FranchiseCreateWithoutCharactersInput, Prisma.FranchiseUncheckedCreateWithoutCharactersInput>
+  where?: Prisma.FranchiseWhereInput
+}
+
+export type FranchiseUpdateToOneWithWhereWithoutCharactersInput = {
+  where?: Prisma.FranchiseWhereInput
+  data: Prisma.XOR<Prisma.FranchiseUpdateWithoutCharactersInput, Prisma.FranchiseUncheckedUpdateWithoutCharactersInput>
+}
+
+export type FranchiseUpdateWithoutCharactersInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  series?: Prisma.SeriesUpdateManyWithoutFranchiseNestedInput
+  collectibles?: Prisma.CollectibleUpdateManyWithoutFranchiseNestedInput
+}
+
+export type FranchiseUncheckedUpdateWithoutCharactersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  series?: Prisma.SeriesUncheckedUpdateManyWithoutFranchiseNestedInput
+  collectibles?: Prisma.CollectibleUncheckedUpdateManyWithoutFranchiseNestedInput
+}
+
 export type FranchiseCreateWithoutSeriesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterCreateNestedManyWithoutFranchiseInput
   collectibles?: Prisma.CollectibleCreateNestedManyWithoutFranchiseInput
 }
 
@@ -390,6 +464,7 @@ export type FranchiseUncheckedCreateWithoutSeriesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutFranchiseInput
   collectibles?: Prisma.CollectibleUncheckedCreateNestedManyWithoutFranchiseInput
 }
 
@@ -413,6 +488,7 @@ export type FranchiseUpdateWithoutSeriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUpdateManyWithoutFranchiseNestedInput
   collectibles?: Prisma.CollectibleUpdateManyWithoutFranchiseNestedInput
 }
 
@@ -421,6 +497,7 @@ export type FranchiseUncheckedUpdateWithoutSeriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutFranchiseNestedInput
   collectibles?: Prisma.CollectibleUncheckedUpdateManyWithoutFranchiseNestedInput
 }
 
@@ -428,6 +505,7 @@ export type FranchiseCreateWithoutCollectiblesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterCreateNestedManyWithoutFranchiseInput
   series?: Prisma.SeriesCreateNestedManyWithoutFranchiseInput
 }
 
@@ -436,6 +514,7 @@ export type FranchiseUncheckedCreateWithoutCollectiblesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  characters?: Prisma.CharacterUncheckedCreateNestedManyWithoutFranchiseInput
   series?: Prisma.SeriesUncheckedCreateNestedManyWithoutFranchiseInput
 }
 
@@ -459,6 +538,7 @@ export type FranchiseUpdateWithoutCollectiblesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUpdateManyWithoutFranchiseNestedInput
   series?: Prisma.SeriesUpdateManyWithoutFranchiseNestedInput
 }
 
@@ -467,6 +547,7 @@ export type FranchiseUncheckedUpdateWithoutCollectiblesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  characters?: Prisma.CharacterUncheckedUpdateManyWithoutFranchiseNestedInput
   series?: Prisma.SeriesUncheckedUpdateManyWithoutFranchiseNestedInput
 }
 
@@ -476,11 +557,13 @@ export type FranchiseUncheckedUpdateWithoutCollectiblesInput = {
  */
 
 export type FranchiseCountOutputType = {
+  characters: number
   series: number
   collectibles: number
 }
 
 export type FranchiseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  characters?: boolean | FranchiseCountOutputTypeCountCharactersArgs
   series?: boolean | FranchiseCountOutputTypeCountSeriesArgs
   collectibles?: boolean | FranchiseCountOutputTypeCountCollectiblesArgs
 }
@@ -493,6 +576,13 @@ export type FranchiseCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
    * Select specific fields to fetch from the FranchiseCountOutputType
    */
   select?: Prisma.FranchiseCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * FranchiseCountOutputType without action
+ */
+export type FranchiseCountOutputTypeCountCharactersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CharacterWhereInput
 }
 
 /**
@@ -515,6 +605,7 @@ export type FranchiseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  characters?: boolean | Prisma.Franchise$charactersArgs<ExtArgs>
   series?: boolean | Prisma.Franchise$seriesArgs<ExtArgs>
   collectibles?: boolean | Prisma.Franchise$collectiblesArgs<ExtArgs>
   _count?: boolean | Prisma.FranchiseCountOutputTypeDefaultArgs<ExtArgs>
@@ -543,6 +634,7 @@ export type FranchiseSelectScalar = {
 
 export type FranchiseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["franchise"]>
 export type FranchiseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  characters?: boolean | Prisma.Franchise$charactersArgs<ExtArgs>
   series?: boolean | Prisma.Franchise$seriesArgs<ExtArgs>
   collectibles?: boolean | Prisma.Franchise$collectiblesArgs<ExtArgs>
   _count?: boolean | Prisma.FranchiseCountOutputTypeDefaultArgs<ExtArgs>
@@ -553,6 +645,7 @@ export type FranchiseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $FranchisePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Franchise"
   objects: {
+    characters: Prisma.$CharacterPayload<ExtArgs>[]
     series: Prisma.$SeriesPayload<ExtArgs>[]
     collectibles: Prisma.$CollectiblePayload<ExtArgs>[]
   }
@@ -955,6 +1048,7 @@ readonly fields: FranchiseFieldRefs;
  */
 export interface Prisma__FranchiseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  characters<T extends Prisma.Franchise$charactersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Franchise$charactersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CharacterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   series<T extends Prisma.Franchise$seriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Franchise$seriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   collectibles<T extends Prisma.Franchise$collectiblesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Franchise$collectiblesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectiblePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1380,6 +1474,30 @@ export type FranchiseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many Franchises to delete.
    */
   limit?: number
+}
+
+/**
+ * Franchise.characters
+ */
+export type Franchise$charactersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Character
+   */
+  select?: Prisma.CharacterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Character
+   */
+  omit?: Prisma.CharacterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CharacterInclude<ExtArgs> | null
+  where?: Prisma.CharacterWhereInput
+  orderBy?: Prisma.CharacterOrderByWithRelationInput | Prisma.CharacterOrderByWithRelationInput[]
+  cursor?: Prisma.CharacterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CharacterScalarFieldEnum | Prisma.CharacterScalarFieldEnum[]
 }
 
 /**

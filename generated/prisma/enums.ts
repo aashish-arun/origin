@@ -9,6 +9,15 @@
 * 🟢 You can import this file directly.
 */
 
+export const CollectibleStatus = {
+  OWNED: 'OWNED',
+  PLANNED: 'PLANNED',
+  WISHLIST: 'WISHLIST'
+} as const
+
+export type CollectibleStatus = (typeof CollectibleStatus)[keyof typeof CollectibleStatus]
+
+
 export const SeriesFormat = {
   MANGA: 'MANGA',
   ANIME: 'ANIME',
@@ -19,6 +28,16 @@ export const SeriesFormat = {
 } as const
 
 export type SeriesFormat = (typeof SeriesFormat)[keyof typeof SeriesFormat]
+
+
+export const ReferenceType = {
+  WIKIPEDIA: 'WIKIPEDIA',
+  OFFICIAL: 'OFFICIAL',
+  FANDOM: 'FANDOM',
+  OTHER: 'OTHER'
+} as const
+
+export type ReferenceType = (typeof ReferenceType)[keyof typeof ReferenceType]
 
 
 export const Condition = {

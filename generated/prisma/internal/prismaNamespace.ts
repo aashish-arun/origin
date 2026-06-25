@@ -389,6 +389,8 @@ export const ModelName = {
   Category: 'Category',
   Subtype: 'Subtype',
   Franchise: 'Franchise',
+  Character: 'Character',
+  CharacterReference: 'CharacterReference',
   Series: 'Series',
   Brand: 'Brand',
   Collectible: 'Collectible',
@@ -411,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "healthCheck" | "admin" | "category" | "subtype" | "franchise" | "series" | "brand" | "collectible" | "edition" | "purchase" | "lot" | "media"
+    modelProps: "healthCheck" | "admin" | "category" | "subtype" | "franchise" | "character" | "characterReference" | "series" | "brand" | "collectible" | "edition" | "purchase" | "lot" | "media"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -782,6 +784,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.FranchiseCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.FranchiseCountAggregateOutputType> | number
+        }
+      }
+    }
+    Character: {
+      payload: Prisma.$CharacterPayload<ExtArgs>
+      fields: Prisma.CharacterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CharacterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CharacterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        findFirst: {
+          args: Prisma.CharacterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CharacterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        findMany: {
+          args: Prisma.CharacterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>[]
+        }
+        create: {
+          args: Prisma.CharacterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        createMany: {
+          args: Prisma.CharacterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CharacterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>[]
+        }
+        delete: {
+          args: Prisma.CharacterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        update: {
+          args: Prisma.CharacterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        deleteMany: {
+          args: Prisma.CharacterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CharacterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CharacterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>[]
+        }
+        upsert: {
+          args: Prisma.CharacterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterPayload>
+        }
+        aggregate: {
+          args: Prisma.CharacterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCharacter>
+        }
+        groupBy: {
+          args: Prisma.CharacterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CharacterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CharacterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CharacterCountAggregateOutputType> | number
+        }
+      }
+    }
+    CharacterReference: {
+      payload: Prisma.$CharacterReferencePayload<ExtArgs>
+      fields: Prisma.CharacterReferenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CharacterReferenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CharacterReferenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        findFirst: {
+          args: Prisma.CharacterReferenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CharacterReferenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        findMany: {
+          args: Prisma.CharacterReferenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>[]
+        }
+        create: {
+          args: Prisma.CharacterReferenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        createMany: {
+          args: Prisma.CharacterReferenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CharacterReferenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>[]
+        }
+        delete: {
+          args: Prisma.CharacterReferenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        update: {
+          args: Prisma.CharacterReferenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        deleteMany: {
+          args: Prisma.CharacterReferenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CharacterReferenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CharacterReferenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>[]
+        }
+        upsert: {
+          args: Prisma.CharacterReferenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CharacterReferencePayload>
+        }
+        aggregate: {
+          args: Prisma.CharacterReferenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCharacterReference>
+        }
+        groupBy: {
+          args: Prisma.CharacterReferenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CharacterReferenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CharacterReferenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CharacterReferenceCountAggregateOutputType> | number
         }
       }
     }
@@ -1392,6 +1542,30 @@ export const FranchiseScalarFieldEnum = {
 export type FranchiseScalarFieldEnum = (typeof FranchiseScalarFieldEnum)[keyof typeof FranchiseScalarFieldEnum]
 
 
+export const CharacterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  franchiseId: 'franchiseId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CharacterScalarFieldEnum = (typeof CharacterScalarFieldEnum)[keyof typeof CharacterScalarFieldEnum]
+
+
+export const CharacterReferenceScalarFieldEnum = {
+  id: 'id',
+  characterId: 'characterId',
+  type: 'type',
+  url: 'url',
+  label: 'label',
+  createdAt: 'createdAt'
+} as const
+
+export type CharacterReferenceScalarFieldEnum = (typeof CharacterReferenceScalarFieldEnum)[keyof typeof CharacterReferenceScalarFieldEnum]
+
+
 export const SeriesScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1421,11 +1595,14 @@ export const CollectibleScalarFieldEnum = {
   title: 'title',
   description: 'description',
   imageUrl: 'imageUrl',
+  status: 'status',
   brandId: 'brandId',
   categoryId: 'categoryId',
   subtypeId: 'subtypeId',
   franchiseId: 'franchiseId',
   seriesId: 'seriesId',
+  characterId: 'characterId',
+  seriesNumber: 'seriesNumber',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1577,6 +1754,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'ReferenceType'
+ */
+export type EnumReferenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReferenceType'>
+    
+
+
+/**
+ * Reference to a field of type 'ReferenceType[]'
+ */
+export type ListEnumReferenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReferenceType[]'>
+    
+
+
+/**
  * Reference to a field of type 'SeriesFormat'
  */
 export type EnumSeriesFormatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesFormat'>
@@ -1587,6 +1778,20 @@ export type EnumSeriesFormatFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'SeriesFormat[]'
  */
 export type ListEnumSeriesFormatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SeriesFormat[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CollectibleStatus'
+ */
+export type EnumCollectibleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CollectibleStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'CollectibleStatus[]'
+ */
+export type ListEnumCollectibleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CollectibleStatus[]'>
     
 
 
@@ -1745,6 +1950,8 @@ export type GlobalOmitConfig = {
   category?: Prisma.CategoryOmit
   subtype?: Prisma.SubtypeOmit
   franchise?: Prisma.FranchiseOmit
+  character?: Prisma.CharacterOmit
+  characterReference?: Prisma.CharacterReferenceOmit
   series?: Prisma.SeriesOmit
   brand?: Prisma.BrandOmit
   collectible?: Prisma.CollectibleOmit

@@ -56,6 +56,8 @@ export const ModelName = {
   Category: 'Category',
   Subtype: 'Subtype',
   Franchise: 'Franchise',
+  Character: 'Character',
+  CharacterReference: 'CharacterReference',
   Series: 'Series',
   Brand: 'Brand',
   Collectible: 'Collectible',
@@ -131,6 +133,30 @@ export const FranchiseScalarFieldEnum = {
 export type FranchiseScalarFieldEnum = (typeof FranchiseScalarFieldEnum)[keyof typeof FranchiseScalarFieldEnum]
 
 
+export const CharacterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  franchiseId: 'franchiseId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CharacterScalarFieldEnum = (typeof CharacterScalarFieldEnum)[keyof typeof CharacterScalarFieldEnum]
+
+
+export const CharacterReferenceScalarFieldEnum = {
+  id: 'id',
+  characterId: 'characterId',
+  type: 'type',
+  url: 'url',
+  label: 'label',
+  createdAt: 'createdAt'
+} as const
+
+export type CharacterReferenceScalarFieldEnum = (typeof CharacterReferenceScalarFieldEnum)[keyof typeof CharacterReferenceScalarFieldEnum]
+
+
 export const SeriesScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -160,11 +186,14 @@ export const CollectibleScalarFieldEnum = {
   title: 'title',
   description: 'description',
   imageUrl: 'imageUrl',
+  status: 'status',
   brandId: 'brandId',
   categoryId: 'categoryId',
   subtypeId: 'subtypeId',
   franchiseId: 'franchiseId',
   seriesId: 'seriesId',
+  characterId: 'characterId',
+  seriesNumber: 'seriesNumber',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
