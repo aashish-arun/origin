@@ -60,3 +60,11 @@ export const PurchaseStatus = {
 } as const
 
 export type PurchaseStatus = (typeof PurchaseStatus)[keyof typeof PurchaseStatus]
+
+
+export const GalleryVisibility = {
+  PUBLIC: 'PUBLIC',
+  PRIVATE: 'PRIVATE'
+} as const
+
+export type GalleryVisibility = (typeof GalleryVisibility)[keyof typeof GalleryVisibility]

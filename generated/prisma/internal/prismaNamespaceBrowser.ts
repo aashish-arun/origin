@@ -64,7 +64,13 @@ export const ModelName = {
   Edition: 'Edition',
   Purchase: 'Purchase',
   Lot: 'Lot',
-  Media: 'Media'
+  Media: 'Media',
+  GalleryImage: 'GalleryImage',
+  GalleryTag: 'GalleryTag',
+  GalleryImageTag: 'GalleryImageTag',
+  GalleryShare: 'GalleryShare',
+  GalleryShareImage: 'GalleryShareImage',
+  GalleryShareView: 'GalleryShareView'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -126,6 +132,7 @@ export type SubtypeScalarFieldEnum = (typeof SubtypeScalarFieldEnum)[keyof typeo
 export const FranchiseScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  iconUrl: 'iconUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -137,6 +144,7 @@ export const CharacterScalarFieldEnum = {
   id: 'id',
   name: 'name',
   franchiseId: 'franchiseId',
+  iconUrl: 'iconUrl',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -174,6 +182,7 @@ export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof 
 export const BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  iconUrl: 'iconUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -263,6 +272,73 @@ export const MediaScalarFieldEnum = {
 } as const
 
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
+
+
+export const GalleryImageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  imageUrl: 'imageUrl',
+  storagePath: 'storagePath',
+  visibility: 'visibility',
+  uploadedDevice: 'uploadedDevice',
+  takenYear: 'takenYear',
+  takenMonth: 'takenMonth',
+  takenDay: 'takenDay',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GalleryImageScalarFieldEnum = (typeof GalleryImageScalarFieldEnum)[keyof typeof GalleryImageScalarFieldEnum]
+
+
+export const GalleryTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type GalleryTagScalarFieldEnum = (typeof GalleryTagScalarFieldEnum)[keyof typeof GalleryTagScalarFieldEnum]
+
+
+export const GalleryImageTagScalarFieldEnum = {
+  imageId: 'imageId',
+  tagId: 'tagId'
+} as const
+
+export type GalleryImageTagScalarFieldEnum = (typeof GalleryImageTagScalarFieldEnum)[keyof typeof GalleryImageTagScalarFieldEnum]
+
+
+export const GalleryShareScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  title: 'title',
+  createdBy: 'createdBy',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GalleryShareScalarFieldEnum = (typeof GalleryShareScalarFieldEnum)[keyof typeof GalleryShareScalarFieldEnum]
+
+
+export const GalleryShareImageScalarFieldEnum = {
+  shareId: 'shareId',
+  imageId: 'imageId'
+} as const
+
+export type GalleryShareImageScalarFieldEnum = (typeof GalleryShareImageScalarFieldEnum)[keyof typeof GalleryShareImageScalarFieldEnum]
+
+
+export const GalleryShareViewScalarFieldEnum = {
+  id: 'id',
+  shareId: 'shareId',
+  viewerUserId: 'viewerUserId',
+  viewerEmail: 'viewerEmail',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  viewedAt: 'viewedAt'
+} as const
+
+export type GalleryShareViewScalarFieldEnum = (typeof GalleryShareViewScalarFieldEnum)[keyof typeof GalleryShareViewScalarFieldEnum]
 
 
 export const SortOrder = {

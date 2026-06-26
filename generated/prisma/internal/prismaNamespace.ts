@@ -397,7 +397,13 @@ export const ModelName = {
   Edition: 'Edition',
   Purchase: 'Purchase',
   Lot: 'Lot',
-  Media: 'Media'
+  Media: 'Media',
+  GalleryImage: 'GalleryImage',
+  GalleryTag: 'GalleryTag',
+  GalleryImageTag: 'GalleryImageTag',
+  GalleryShare: 'GalleryShare',
+  GalleryShareImage: 'GalleryShareImage',
+  GalleryShareView: 'GalleryShareView'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "healthCheck" | "admin" | "category" | "subtype" | "franchise" | "character" | "characterReference" | "series" | "brand" | "collectible" | "edition" | "purchase" | "lot" | "media"
+    modelProps: "healthCheck" | "admin" | "category" | "subtype" | "franchise" | "character" | "characterReference" | "series" | "brand" | "collectible" | "edition" | "purchase" | "lot" | "media" | "galleryImage" | "galleryTag" | "galleryImageTag" | "galleryShare" | "galleryShareImage" | "galleryShareView"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1453,6 +1459,450 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GalleryImage: {
+      payload: Prisma.$GalleryImagePayload<ExtArgs>
+      fields: Prisma.GalleryImageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryImageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryImageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryImageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryImageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        findMany: {
+          args: Prisma.GalleryImageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>[]
+        }
+        create: {
+          args: Prisma.GalleryImageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        createMany: {
+          args: Prisma.GalleryImageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryImageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryImageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        update: {
+          args: Prisma.GalleryImageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryImageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryImageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryImageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryImageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImagePayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryImageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryImage>
+        }
+        groupBy: {
+          args: Prisma.GalleryImageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryImageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryImageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryImageCountAggregateOutputType> | number
+        }
+      }
+    }
+    GalleryTag: {
+      payload: Prisma.$GalleryTagPayload<ExtArgs>
+      fields: Prisma.GalleryTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        findMany: {
+          args: Prisma.GalleryTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>[]
+        }
+        create: {
+          args: Prisma.GalleryTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        createMany: {
+          args: Prisma.GalleryTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        update: {
+          args: Prisma.GalleryTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryTagPayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryTag>
+        }
+        groupBy: {
+          args: Prisma.GalleryTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryTagCountAggregateOutputType> | number
+        }
+      }
+    }
+    GalleryImageTag: {
+      payload: Prisma.$GalleryImageTagPayload<ExtArgs>
+      fields: Prisma.GalleryImageTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryImageTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryImageTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryImageTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryImageTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        findMany: {
+          args: Prisma.GalleryImageTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>[]
+        }
+        create: {
+          args: Prisma.GalleryImageTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        createMany: {
+          args: Prisma.GalleryImageTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryImageTagCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryImageTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        update: {
+          args: Prisma.GalleryImageTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryImageTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryImageTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryImageTagUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryImageTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryImageTagPayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryImageTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryImageTag>
+        }
+        groupBy: {
+          args: Prisma.GalleryImageTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryImageTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryImageTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryImageTagCountAggregateOutputType> | number
+        }
+      }
+    }
+    GalleryShare: {
+      payload: Prisma.$GallerySharePayload<ExtArgs>
+      fields: Prisma.GalleryShareFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryShareFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryShareFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryShareFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryShareFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        findMany: {
+          args: Prisma.GalleryShareFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>[]
+        }
+        create: {
+          args: Prisma.GalleryShareCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        createMany: {
+          args: Prisma.GalleryShareCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryShareCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryShareDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        update: {
+          args: Prisma.GalleryShareUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryShareDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryShareUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryShareUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryShareUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GallerySharePayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryShareAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryShare>
+        }
+        groupBy: {
+          args: Prisma.GalleryShareGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryShareCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareCountAggregateOutputType> | number
+        }
+      }
+    }
+    GalleryShareImage: {
+      payload: Prisma.$GalleryShareImagePayload<ExtArgs>
+      fields: Prisma.GalleryShareImageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryShareImageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryShareImageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryShareImageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryShareImageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        findMany: {
+          args: Prisma.GalleryShareImageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>[]
+        }
+        create: {
+          args: Prisma.GalleryShareImageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        createMany: {
+          args: Prisma.GalleryShareImageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryShareImageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryShareImageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        update: {
+          args: Prisma.GalleryShareImageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryShareImageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryShareImageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryShareImageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryShareImageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareImagePayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryShareImageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryShareImage>
+        }
+        groupBy: {
+          args: Prisma.GalleryShareImageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareImageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryShareImageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareImageCountAggregateOutputType> | number
+        }
+      }
+    }
+    GalleryShareView: {
+      payload: Prisma.$GalleryShareViewPayload<ExtArgs>
+      fields: Prisma.GalleryShareViewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GalleryShareViewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GalleryShareViewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        findFirst: {
+          args: Prisma.GalleryShareViewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GalleryShareViewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        findMany: {
+          args: Prisma.GalleryShareViewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>[]
+        }
+        create: {
+          args: Prisma.GalleryShareViewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        createMany: {
+          args: Prisma.GalleryShareViewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GalleryShareViewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>[]
+        }
+        delete: {
+          args: Prisma.GalleryShareViewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        update: {
+          args: Prisma.GalleryShareViewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        deleteMany: {
+          args: Prisma.GalleryShareViewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GalleryShareViewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GalleryShareViewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>[]
+        }
+        upsert: {
+          args: Prisma.GalleryShareViewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GalleryShareViewPayload>
+        }
+        aggregate: {
+          args: Prisma.GalleryShareViewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGalleryShareView>
+        }
+        groupBy: {
+          args: Prisma.GalleryShareViewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareViewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GalleryShareViewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GalleryShareViewCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1535,6 +1985,7 @@ export type SubtypeScalarFieldEnum = (typeof SubtypeScalarFieldEnum)[keyof typeo
 export const FranchiseScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  iconUrl: 'iconUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1546,6 +1997,7 @@ export const CharacterScalarFieldEnum = {
   id: 'id',
   name: 'name',
   franchiseId: 'franchiseId',
+  iconUrl: 'iconUrl',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1583,6 +2035,7 @@ export type SeriesScalarFieldEnum = (typeof SeriesScalarFieldEnum)[keyof typeof 
 export const BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  iconUrl: 'iconUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1672,6 +2125,73 @@ export const MediaScalarFieldEnum = {
 } as const
 
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
+
+
+export const GalleryImageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  imageUrl: 'imageUrl',
+  storagePath: 'storagePath',
+  visibility: 'visibility',
+  uploadedDevice: 'uploadedDevice',
+  takenYear: 'takenYear',
+  takenMonth: 'takenMonth',
+  takenDay: 'takenDay',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GalleryImageScalarFieldEnum = (typeof GalleryImageScalarFieldEnum)[keyof typeof GalleryImageScalarFieldEnum]
+
+
+export const GalleryTagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type GalleryTagScalarFieldEnum = (typeof GalleryTagScalarFieldEnum)[keyof typeof GalleryTagScalarFieldEnum]
+
+
+export const GalleryImageTagScalarFieldEnum = {
+  imageId: 'imageId',
+  tagId: 'tagId'
+} as const
+
+export type GalleryImageTagScalarFieldEnum = (typeof GalleryImageTagScalarFieldEnum)[keyof typeof GalleryImageTagScalarFieldEnum]
+
+
+export const GalleryShareScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  title: 'title',
+  createdBy: 'createdBy',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GalleryShareScalarFieldEnum = (typeof GalleryShareScalarFieldEnum)[keyof typeof GalleryShareScalarFieldEnum]
+
+
+export const GalleryShareImageScalarFieldEnum = {
+  shareId: 'shareId',
+  imageId: 'imageId'
+} as const
+
+export type GalleryShareImageScalarFieldEnum = (typeof GalleryShareImageScalarFieldEnum)[keyof typeof GalleryShareImageScalarFieldEnum]
+
+
+export const GalleryShareViewScalarFieldEnum = {
+  id: 'id',
+  shareId: 'shareId',
+  viewerUserId: 'viewerUserId',
+  viewerEmail: 'viewerEmail',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  viewedAt: 'viewedAt'
+} as const
+
+export type GalleryShareViewScalarFieldEnum = (typeof GalleryShareViewScalarFieldEnum)[keyof typeof GalleryShareViewScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1838,6 +2358,20 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'GalleryVisibility'
+ */
+export type EnumGalleryVisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GalleryVisibility'>
+    
+
+
+/**
+ * Reference to a field of type 'GalleryVisibility[]'
+ */
+export type ListEnumGalleryVisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GalleryVisibility[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1959,6 +2493,12 @@ export type GlobalOmitConfig = {
   purchase?: Prisma.PurchaseOmit
   lot?: Prisma.LotOmit
   media?: Prisma.MediaOmit
+  galleryImage?: Prisma.GalleryImageOmit
+  galleryTag?: Prisma.GalleryTagOmit
+  galleryImageTag?: Prisma.GalleryImageTagOmit
+  galleryShare?: Prisma.GalleryShareOmit
+  galleryShareImage?: Prisma.GalleryShareImageOmit
+  galleryShareView?: Prisma.GalleryShareViewOmit
 }
 
 /* Types for Logging */

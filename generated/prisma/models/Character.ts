@@ -40,6 +40,7 @@ export type CharacterMinAggregateOutputType = {
   id: number | null
   name: string | null
   franchiseId: number | null
+  iconUrl: string | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -49,6 +50,7 @@ export type CharacterMaxAggregateOutputType = {
   id: number | null
   name: string | null
   franchiseId: number | null
+  iconUrl: string | null
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -58,6 +60,7 @@ export type CharacterCountAggregateOutputType = {
   id: number
   name: number
   franchiseId: number
+  iconUrl: number
   notes: number
   createdAt: number
   updatedAt: number
@@ -79,6 +82,7 @@ export type CharacterMinAggregateInputType = {
   id?: true
   name?: true
   franchiseId?: true
+  iconUrl?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -88,6 +92,7 @@ export type CharacterMaxAggregateInputType = {
   id?: true
   name?: true
   franchiseId?: true
+  iconUrl?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -97,6 +102,7 @@ export type CharacterCountAggregateInputType = {
   id?: true
   name?: true
   franchiseId?: true
+  iconUrl?: true
   notes?: true
   createdAt?: true
   updatedAt?: true
@@ -193,6 +199,7 @@ export type CharacterGroupByOutputType = {
   id: number
   name: string
   franchiseId: number | null
+  iconUrl: string | null
   notes: string | null
   createdAt: Date
   updatedAt: Date
@@ -225,6 +232,7 @@ export type CharacterWhereInput = {
   id?: Prisma.IntFilter<"Character"> | number
   name?: Prisma.StringFilter<"Character"> | string
   franchiseId?: Prisma.IntNullableFilter<"Character"> | number | null
+  iconUrl?: Prisma.StringNullableFilter<"Character"> | string | null
   notes?: Prisma.StringNullableFilter<"Character"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Character"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Character"> | Date | string
@@ -237,6 +245,7 @@ export type CharacterOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -253,6 +262,7 @@ export type CharacterWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CharacterWhereInput | Prisma.CharacterWhereInput[]
   name?: Prisma.StringFilter<"Character"> | string
   franchiseId?: Prisma.IntNullableFilter<"Character"> | number | null
+  iconUrl?: Prisma.StringNullableFilter<"Character"> | string | null
   notes?: Prisma.StringNullableFilter<"Character"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Character"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Character"> | Date | string
@@ -265,6 +275,7 @@ export type CharacterOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  iconUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -282,6 +293,7 @@ export type CharacterScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Character"> | number
   name?: Prisma.StringWithAggregatesFilter<"Character"> | string
   franchiseId?: Prisma.IntNullableWithAggregatesFilter<"Character"> | number | null
+  iconUrl?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"Character"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Character"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Character"> | Date | string
@@ -289,6 +301,7 @@ export type CharacterScalarWhereWithAggregatesInput = {
 
 export type CharacterCreateInput = {
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -301,6 +314,7 @@ export type CharacterUncheckedCreateInput = {
   id?: number
   name: string
   franchiseId?: number | null
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -310,6 +324,7 @@ export type CharacterUncheckedCreateInput = {
 
 export type CharacterUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -322,6 +337,7 @@ export type CharacterUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -333,6 +349,7 @@ export type CharacterCreateManyInput = {
   id?: number
   name: string
   franchiseId?: number | null
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -340,6 +357,7 @@ export type CharacterCreateManyInput = {
 
 export type CharacterUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -349,6 +367,7 @@ export type CharacterUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -373,6 +392,7 @@ export type CharacterCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -387,6 +407,7 @@ export type CharacterMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -396,6 +417,7 @@ export type CharacterMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   franchiseId?: Prisma.SortOrder
+  iconUrl?: Prisma.SortOrder
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -498,6 +520,7 @@ export type CharacterUpdateOneWithoutCollectiblesNestedInput = {
 
 export type CharacterCreateWithoutFranchiseInput = {
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -508,6 +531,7 @@ export type CharacterCreateWithoutFranchiseInput = {
 export type CharacterUncheckedCreateWithoutFranchiseInput = {
   id?: number
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -548,6 +572,7 @@ export type CharacterScalarWhereInput = {
   id?: Prisma.IntFilter<"Character"> | number
   name?: Prisma.StringFilter<"Character"> | string
   franchiseId?: Prisma.IntNullableFilter<"Character"> | number | null
+  iconUrl?: Prisma.StringNullableFilter<"Character"> | string | null
   notes?: Prisma.StringNullableFilter<"Character"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Character"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Character"> | Date | string
@@ -555,6 +580,7 @@ export type CharacterScalarWhereInput = {
 
 export type CharacterCreateWithoutReferencesInput = {
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -566,6 +592,7 @@ export type CharacterUncheckedCreateWithoutReferencesInput = {
   id?: number
   name: string
   franchiseId?: number | null
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -590,6 +617,7 @@ export type CharacterUpdateToOneWithWhereWithoutReferencesInput = {
 
 export type CharacterUpdateWithoutReferencesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -601,6 +629,7 @@ export type CharacterUncheckedUpdateWithoutReferencesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -609,6 +638,7 @@ export type CharacterUncheckedUpdateWithoutReferencesInput = {
 
 export type CharacterCreateWithoutCollectiblesInput = {
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -620,6 +650,7 @@ export type CharacterUncheckedCreateWithoutCollectiblesInput = {
   id?: number
   name: string
   franchiseId?: number | null
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -644,6 +675,7 @@ export type CharacterUpdateToOneWithWhereWithoutCollectiblesInput = {
 
 export type CharacterUpdateWithoutCollectiblesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -655,6 +687,7 @@ export type CharacterUncheckedUpdateWithoutCollectiblesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   franchiseId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -664,6 +697,7 @@ export type CharacterUncheckedUpdateWithoutCollectiblesInput = {
 export type CharacterCreateManyFranchiseInput = {
   id?: number
   name: string
+  iconUrl?: string | null
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -671,6 +705,7 @@ export type CharacterCreateManyFranchiseInput = {
 
 export type CharacterUpdateWithoutFranchiseInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -681,6 +716,7 @@ export type CharacterUpdateWithoutFranchiseInput = {
 export type CharacterUncheckedUpdateWithoutFranchiseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -691,6 +727,7 @@ export type CharacterUncheckedUpdateWithoutFranchiseInput = {
 export type CharacterUncheckedUpdateManyWithoutFranchiseInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  iconUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -740,6 +777,7 @@ export type CharacterSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   name?: boolean
   franchiseId?: boolean
+  iconUrl?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -753,6 +791,7 @@ export type CharacterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   name?: boolean
   franchiseId?: boolean
+  iconUrl?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -763,6 +802,7 @@ export type CharacterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   name?: boolean
   franchiseId?: boolean
+  iconUrl?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -773,12 +813,13 @@ export type CharacterSelectScalar = {
   id?: boolean
   name?: boolean
   franchiseId?: boolean
+  iconUrl?: boolean
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CharacterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "franchiseId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["character"]>
+export type CharacterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "franchiseId" | "iconUrl" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["character"]>
 export type CharacterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   franchise?: boolean | Prisma.Character$franchiseArgs<ExtArgs>
   collectibles?: boolean | Prisma.Character$collectiblesArgs<ExtArgs>
@@ -803,6 +844,7 @@ export type $CharacterPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     id: number
     name: string
     franchiseId: number | null
+    iconUrl: string | null
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -1235,6 +1277,7 @@ export interface CharacterFieldRefs {
   readonly id: Prisma.FieldRef<"Character", 'Int'>
   readonly name: Prisma.FieldRef<"Character", 'String'>
   readonly franchiseId: Prisma.FieldRef<"Character", 'Int'>
+  readonly iconUrl: Prisma.FieldRef<"Character", 'String'>
   readonly notes: Prisma.FieldRef<"Character", 'String'>
   readonly createdAt: Prisma.FieldRef<"Character", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Character", 'DateTime'>

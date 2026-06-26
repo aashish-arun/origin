@@ -341,6 +341,50 @@ export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
 }
 
+export type UuidNullableFilter<$PrismaModel = never> = {
+  equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  notIn?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  lt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  lte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  mode?: Prisma.QueryMode
+  not?: Prisma.NestedUuidNullableFilter<$PrismaModel> | string | null
+}
+
+export type EnumGalleryVisibilityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GalleryVisibility | Prisma.EnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  in?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel> | $Enums.GalleryVisibility
+}
+
+export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  notIn?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  lt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  lte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  mode?: Prisma.QueryMode
+  not?: Prisma.NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type EnumGalleryVisibilityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GalleryVisibility | Prisma.EnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  in?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGalleryVisibilityWithAggregatesFilter<$PrismaModel> | $Enums.GalleryVisibility
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -677,6 +721,48 @@ export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+}
+
+export type NestedUuidNullableFilter<$PrismaModel = never> = {
+  equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  notIn?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  lt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  lte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedUuidNullableFilter<$PrismaModel> | string | null
+}
+
+export type NestedEnumGalleryVisibilityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GalleryVisibility | Prisma.EnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  in?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel> | $Enums.GalleryVisibility
+}
+
+export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  notIn?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  lt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  lte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gt?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  gte?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumGalleryVisibilityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GalleryVisibility | Prisma.EnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  in?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GalleryVisibility[] | Prisma.ListEnumGalleryVisibilityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGalleryVisibilityWithAggregatesFilter<$PrismaModel> | $Enums.GalleryVisibility
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGalleryVisibilityFilter<$PrismaModel>
 }
 
 

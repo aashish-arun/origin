@@ -111,3 +111,33 @@ export type Lot = Prisma.LotModel
  * 
  */
 export type Media = Prisma.MediaModel
+/**
+ * Model GalleryImage
+ * 
+ */
+export type GalleryImage = Prisma.GalleryImageModel
+/**
+ * Model GalleryTag
+ * 
+ */
+export type GalleryTag = Prisma.GalleryTagModel
+/**
+ * Model GalleryImageTag
+ * 
+ */
+export type GalleryImageTag = Prisma.GalleryImageTagModel
+/**
+ * Model GalleryShare
+ * 
+ */
+export type GalleryShare = Prisma.GalleryShareModel
+/**
+ * Model GalleryShareImage
+ * 
+ */
+export type GalleryShareImage = Prisma.GalleryShareImageModel
+/**
+ * Model GalleryShareView
+ * 
+ */
+export type GalleryShareView = Prisma.GalleryShareViewModel

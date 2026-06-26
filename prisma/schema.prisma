@@ -296,6 +296,104 @@ model Media {
 }
 
 ////////////////////////////////////////////////////////////
+// 🖼️ GALLERY
+////////////////////////////////////////////////////////////
+
+model GalleryImage {
+  id             Int                @id @default(autoincrement())
+  userId         String?            @db.Uuid @map("user_id")
+
+  imageUrl       String             @map("image_url")
+  storagePath    String             @map("storage_path")
+
+  visibility     GalleryVisibility  @default(PRIVATE)
+
+  uploadedDevice String?            @map("uploaded_device")
+
+  takenYear      Int?               @map("taken_year")
+  takenMonth     Int?               @map("taken_month")
+  takenDay       Int?               @map("taken_day")
+
+  createdAt      DateTime           @default(now()) @map("created_at")
+  updatedAt      DateTime           @updatedAt @map("updated_at")
+
+  tags           GalleryImageTag[]
+  shareImages    GalleryShareImage[]
+
+  @@index([visibility])
+  @@index([createdAt])
+  @@index([takenYear, takenMonth])
+  @@map("gallery_image")
+}
+
+model GalleryTag {
+  id        Int               @id @default(autoincrement())
+  name      String            @unique
+  createdAt DateTime          @default(now()) @map("created_at")
+
+  images    GalleryImageTag[]
+
+  @@map("gallery_tag")
+}
+
+model GalleryImageTag {
+  imageId Int @map("image_id")
+  tagId   Int @map("tag_id")
+
+  image   GalleryImage @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  tag     GalleryTag   @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([imageId, tagId])
+  @@map("gallery_image_tag")
+}
+
+model GalleryShare {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique @default(uuid()) @db.Uuid
+  title     String?
+
+  createdBy String?  @db.Uuid @map("created_by")
+  expiresAt DateTime? @map("expires_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  images    GalleryShareImage[]
+  views     GalleryShareView[]
+
+  @@map("gallery_share")
+}
+
+model GalleryShareImage {
+  shareId Int @map("share_id")
+  imageId Int @map("image_id")
+
+  share   GalleryShare @relation(fields: [shareId], references: [id], onDelete: Cascade)
+  image   GalleryImage @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  @@id([shareId, imageId])
+  @@map("gallery_share_image")
+}
+
+model GalleryShareView {
+  id           Int      @id @default(autoincrement())
+  shareId      Int      @map("share_id")
+
+  viewerUserId String?  @db.Uuid @map("viewer_user_id")
+  viewerEmail  String?  @map("viewer_email")
+
+  ipAddress    String?  @map("ip_address")
+  userAgent    String?  @map("user_agent")
+
+  viewedAt     DateTime @default(now()) @map("viewed_at")
+
+  share        GalleryShare @relation(fields: [shareId], references: [id], onDelete: Cascade)
+
+  @@index([shareId])
+  @@index([viewedAt])
+  @@map("gallery_share_view")
+}
+
+////////////////////////////////////////////////////////////
 // 🏷️ ENUMS
 ////////////////////////////////////////////////////////////
 
@@ -335,4 +433,9 @@ enum PurchaseStatus {
   OWNED
   SOLD
   GIFTED
+}
+
+enum GalleryVisibility {
+  PUBLIC
+  PRIVATE
 }
