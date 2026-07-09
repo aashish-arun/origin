@@ -1,47 +1,68 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export default function Footer() {
+  const pathname = usePathname()
+
+  const isPortfolio =
+    pathname === '/' ||
+    pathname.startsWith('/aashish-arun') ||
+    pathname.startsWith('/portfolio')
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="border-t border-white/10 backdrop-blur bg-black/70"
+      className={[
+        'bg-black/70 backdrop-blur',
+        isPortfolio ? '' : 'border-t border-white/10',
+      ].join(' ')}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between text-sm text-gray-300">
-        
-        {/* Left: Copyright */}
+      <div
+        className={[
+          'mx-auto flex min-h-16 items-center justify-between px-6 text-sm',
+          isPortfolio
+            ? 'max-w-5xl py-6 text-gray-500'
+            : 'h-16 max-w-7xl text-gray-300',
+        ].join(' ')}
+      >
         <span>
           © {new Date().getFullYear()} Aashish Arun. All rights reserved.
         </span>
 
-        {/* Right: Links */}
         <div className="flex gap-6">
-          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/aashish-arun-7489ab250/"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition"
+            className={[
+              'transition',
+              isPortfolio ? 'hover:text-cyan-400' : 'hover:text-white',
+            ].join(' ')}
           >
             LinkedIn
           </a>
 
-          {/* GitHub */}
           <a
             href="https://github.com/aashish-arun"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition"
+            className={[
+              'transition',
+              isPortfolio ? 'hover:text-cyan-400' : 'hover:text-white',
+            ].join(' ')}
           >
             GitHub
           </a>
 
-          {/* Gmail */}
           <a
             href="mailto:aashish.ouo@gmail.com"
-            className="hover:text-white transition"
+            className={[
+              'transition',
+              isPortfolio ? 'hover:text-cyan-400' : 'hover:text-white',
+            ].join(' ')}
           >
             Gmail
           </a>

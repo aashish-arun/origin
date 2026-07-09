@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter, usePathname } from 'next/navigation'
@@ -9,6 +10,9 @@ type UserInfo = {
   email: string
   role: 'Admin' | 'User'
 }
+
+const portfolioImage = '/images/aashish-pfp.jpg'
+const websiteImage = '/images/pfp/firstoflast-pfp.png'
 
 export default function Header() {
   const router = useRouter()
@@ -28,7 +32,7 @@ export default function Header() {
     const section = document.getElementById(id)
 
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
     } else {
       router.push(`/#${id}`)
     }
@@ -71,7 +75,7 @@ export default function Header() {
     { label: 'About', id: 'about' },
     { label: 'Tech Stack', id: 'techstack' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Timeline', id: 'timeline' },
+    { label: 'Experience', id: 'timeline' },
     { label: 'Contact', id: 'contact' },
   ]
 
@@ -85,31 +89,47 @@ export default function Header() {
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/70 shadow-lg backdrop-blur"
+      className={[
+        'fixed left-0 top-0 z-50 w-full border-b backdrop-blur',
+        isPortfolio
+          ? 'border-white/10 bg-black/70'
+          : 'border-white/10 bg-black/70 shadow-lg',
+      ].join(' ')}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <span
+      <div
+        className={[
+          'mx-auto flex h-16 items-center justify-between px-6',
+          isPortfolio ? 'max-w-5xl' : 'max-w-7xl',
+        ].join(' ')}
+      >
+        <button
+          type="button"
           onClick={() => {
             if (isPortfolio) scrollToSection('about')
             else router.push('/firstoflast')
           }}
-          className="cursor-pointer text-lg font-bold tracking-wide transition hover:text-blue-400"
+          className={[
+            'font-bold tracking-wide transition',
+            isPortfolio
+              ? 'text-sm text-white hover:text-cyan-400'
+              : 'text-lg text-white hover:text-blue-400',
+          ].join(' ')}
         >
           {isAdminRoute
             ? 'FirstOfLast Admin'
             : isPortfolio
               ? 'Aashish Arun'
               : 'FirstOfLast'}
-        </span>
+        </button>
 
         {isPortfolio && (
-          <nav className="hidden items-center gap-8 text-sm text-gray-300 md:flex">
+          <nav className="hidden items-center gap-6 text-sm text-gray-400 md:flex">
             {portfolioNav.map((item) => (
               <button
                 key={item.label}
                 type="button"
                 onClick={() => scrollToSection(item.id)}
-                className="transition hover:text-blue-400"
+                className="transition hover:text-cyan-400"
               >
                 {item.label}
               </button>
@@ -156,9 +176,33 @@ export default function Header() {
             <button
               type="button"
               onClick={() => router.push('/firstoflast')}
-              className="rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold shadow-lg transition hover:shadow-xl"
+              className="group flex h-10 items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-2 py-2 text-sm font-semibold text-gray-300 transition hover:border-cyan-400/40 hover:text-white"
             >
-              Website →
+              <motion.span
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.55 }}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-purple-300 bg-gradient-to-br from-purple-400 to-blue-600 text-xs font-bold text-white shadow-lg"
+              >
+                P
+              </motion.span>
+
+              {/* Image version for later:
+              <motion.span
+                className="relative h-8 w-8 overflow-hidden rounded-full border border-cyan-400/40"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={firstOfLastImage}
+                  alt="FirstOfLast profile"
+                  fill
+                  sizes="32px"
+                  className="object-cover"
+                />
+              </motion.span>
+              */}
+
+              <span className="pr-2">Portfolio</span>
             </button>
           )}
 
@@ -166,9 +210,24 @@ export default function Header() {
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-5 py-2 text-sm font-semibold shadow-lg transition hover:shadow-xl"
+              className="group flex h-10 items-center gap-3 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-2 py-2 text-sm font-semibold text-white shadow-lg transition hover:shadow-xl"
             >
-              ← Portfolio
+              
+              <motion.span
+                className="relative h-8 w-8 overflow-hidden rounded-full border border-white/30"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={websiteImage}
+                  alt="Aashish Arun profile"
+                  fill
+                  sizes="32px"
+                  className="object-cover"
+                />
+              </motion.span>
+
+              <span className="pr-2">Website</span>
             </button>
           )}
         </div>

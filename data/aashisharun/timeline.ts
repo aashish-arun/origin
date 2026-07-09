@@ -6,6 +6,8 @@ export type TimelineEvent = {
   type: TimelineEventType
   title: string
   achievements: string[]
+  gpa?: string
+  cgpa?: string
 }
 
 export const timelineEvents: TimelineEvent[] = [
@@ -14,6 +16,7 @@ export const timelineEvents: TimelineEvent[] = [
     endDate: '2020-03-20',
     type: 'study',
     title: 'AISSE @ St. Thomas Central School',
+    cgpa: '6.8',
     achievements: [],
   },
   {
@@ -21,6 +24,7 @@ export const timelineEvents: TimelineEvent[] = [
     endDate: '2022-01-18',
     type: 'study',
     title: 'AISSCE @ St. Thomas Central School',
+    cgpa: '7.7',
     achievements: [],
   },
   {
@@ -49,7 +53,8 @@ export const timelineEvents: TimelineEvent[] = [
     startDate: '2024-09-01',
     endDate: 'Present',
     type: 'study',
-    title: 'Diploma in Software Development @ SAIT',
+    title: 'Diploma in Software Development @ SAIT (With Honours)',
+    gpa: '3.84',
     achievements: [
       'Full-stack development projects',
       'Web & mobile applications',
@@ -60,7 +65,7 @@ export const timelineEvents: TimelineEvent[] = [
     startDate: '2024-11-20',
     endDate: 'Present',
     type: 'work',
-    title: 'Gas Bar Clerk @ Calgary Co-op',
+    title: 'Gas Bar Clerk / Fill in Supervisor @ Calgary Co-op',
     achievements: [
       'Daily sales & cash management',
       'Customer service excellence',
