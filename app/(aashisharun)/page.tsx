@@ -191,7 +191,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl space-y-20 px-6 pb-16 pt-24">
+    <div className="mx-auto max-w-5xl space-y-20 px-6 pb-16 pt-8">
       <section id="about">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-400">
           Software Developer
